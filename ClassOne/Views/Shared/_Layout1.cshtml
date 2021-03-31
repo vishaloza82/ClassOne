@@ -1,42 +1,266 @@
 ﻿<!DOCTYPE html>
+
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*<meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>*@
+
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Dashboard 3</title>
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-sanitize.min.js"></script>
+
+    <!-- Fontfaces CSS-->
+    <link href="~/Design/css/font-face.css" rel="stylesheet" media="all">
+    <link href="~/Design/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="~/Design/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="~/Design/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="~/Design/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="~/Design/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="~/Design/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="~/Design/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="~/Design/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="~/Design/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="~/Design/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/Design/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="~/Design/css/theme.css" rel="stylesheet" media="all">
+
+    <!--Style CSS-->
+    <link href="~/Design/css/Style.css" rel="stylesheet" />
+
+    <script>
+        /**/
+        @*var ApiPath = '@ClassOne.Constants.Collections.strAPIPath';*@
+        /**/
+        var CustomerId = 0;
+        var layout1 = angular.module("myLayoutApp", ['ngSanitize']);
+
+        layout1.controller("myLayoutCtrl", function ($scope, $http, $interval, $document) {
+            /**/
+                var SelectedSchoolId = '' +@ViewBag.SelectedSchoolId +'';
+            /**/
+            /**/
+            var DisableSelect = '' +@ViewBag.DisableSelect +'';
+            /**/
+            $scope.SelectedSchoolId = SelectedSchoolId;
+            //console.log($scope.SelectedSchoolId);
+            if (DisableSelect == 1) {
+                $scope.DisableSelect = true;
+            }
+            else {
+                $scope.DisableSelect = false;
+            }
+            $scope.SchoolType = 0;
+            $scope.SchoolModelId = null;
+            $scope.SchoolModelName = null;
+            
+        })
+        
+    </script>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+<body class="animsition" data-ng-app="myLayoutApp" data-ng-controller="myLayoutCtrl" data-ng-cloak="true">
+    <div class="page-wrapper">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop3 d-none d-lg-block">
+            <div class="section__content section__content--p35">
+                <div class="header3-wrap">
+                    <div class="header__logo">
+                        <a href="#">
+                            <img src="~/Design/images/icon/logo.png" alt="ClassOne" />
+                        </a>
+                    </div>                    
+                    <div class="header__tool">                       
+                        <div class="account-wrap">
+                            <div class="account-item account-item--style2 clearfix js-item-menu">                                
+                                <div class="content">
+                                    <a class="js-acc-btn" href="#">Login</a>
+                                </div>
+                                <div class="account-dropdown js-dropdown">                                    
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="/Student/Student">
+                                                <i class="zmdi zmdi-account"></i>Student
+                                            </a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="/Teacher/Teacher">
+                                                <i class="zmdi zmdi-account-box-o"></i>Teacher
+                                            </a>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        </header>
+        <!-- END HEADER DESKTOP-->
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile header-mobile-2 d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="index.html">
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">                    
+                </div>
+            </nav>
+        </header>
+        <div class="sub-header-mobile-2 d-block d-lg-none">
+            <div class="header__tool">                
+                <div class="account-wrap">
+                    <div class="account-item account-item--style2 clearfix js-item-menu">
+                        <div class="image">
+                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                        </div>
+                        <div class="content">
+                            <a class="js-acc-btn" href="#">john doe</a>
+                        </div>
+                        <div class="account-dropdown js-dropdown">
+                            <div class="info clearfix">
+                                <div class="image">
+                                    <a href="#">
+                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h5 class="name">
+                                        <a href="#">john doe</a>
+                                    </h5>
+                                    <span class="email">johndoe@example.com</span>
+                                </div>
+                            </div>
+                            <div class="account-dropdown__body">
+                                <div class="account-dropdown__item">
+                                    <a href="#">
+                                        <i class="zmdi zmdi-account"></i>Account
+                                    </a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="#">
+                                        <i class="zmdi zmdi-settings"></i>Setting
+                                    </a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="#">
+                                        <i class="zmdi zmdi-money-box"></i>Billing
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="account-dropdown__footer">
+                                <a href="#">
+                                    <i class="zmdi zmdi-power"></i>Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <!-- END HEADER MOBILE -->
+        <!-- PAGE CONTENT-->
+        <div class="page-content--bgf7">
+            <!-- BREADCRUMB-->
+            <section class="au-breadcrumb2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <div class="au-breadcrumb-left">
+                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                        <li class="list-inline-item active">
+                                            <a href="#">Home</a>
+                                        </li>
+                                        <li class="list-inline-item seprate">
+                                            <span>/</span>
+                                        </li>
+                                        <li class="list-inline-item">Dashboard</li>
+                                    </ul>
+                                </div>
+                                <form class="au-form-icon--sm" action="" method="post">
+                                    <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END BREADCRUMB-->
+            <!-- WELCOME-->
+            <!-- END WELCOME-->
+            <!-- STATISTIC-->
+            <!-- END STATISTIC-->
+            <!-- STATISTIC CHART-->
+            <!-- END STATISTIC CHART-->
+            <!-- DATA TABLE-->
+            <!-- END DATA TABLE-->
+            <!-- COPYRIGHT-->
+            @RenderBody()
+            <section class="p-t-60 p-b-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2018 ClassOne. All rights reserved. Template by <a href="https://ClassOne.com">ClassOne</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END COPYRIGHT-->
+        </div>
+
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- Jquery JS-->
+    <script src="~/Design/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="~/Design/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="~/Design/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="~/Design/vendor/slick/slick.min.js"></script>
+    <script src="~/Design/vendor/wow/wow.min.js"></script>
+    <script src="~/Design/vendor/animsition/animsition.min.js"></script>
+    <script src="~/Design/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="~/Design/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="~/Design/vendor/counter-up/jquery.counterup.min.js"></script>
+    <script src="~/Design/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="~/Design/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/Design/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="~/Design/vendor/select2/select2.min.js"></script>
+
+    <!-- Main JS-->
+    <script src="~/Design/js/main.js"></script>
+    @*@RenderSection("scripts", required: false)*@
 </body>
+
 </html>

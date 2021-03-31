@@ -17,4 +17,32 @@ namespace ClassOne.Models
         public bool RememberMe { get; set; }
     }
 
+    public class LoginVM
+    {
+        public bool Login { get; set; }
+        public string Email_Message { get; set; }
+        public string Password_Message { get; set; }
+        public string Username_Message { get; set; }
+        public string FirstName_Message { get; set; }
+        public string LastName_Message { get; set; }
+        public string EmailId_Message { get; set; }
+        public string MobileNumber_Message { get; set; }
+        public string StudentId_Message { get; set; }
+    }
+
+    public class TeacherLoginVM
+    {
+        public string UserName { get; set; }
+        public int RoleId { get; set; }
+        public string EmailId { get; set; }
+        public string Password { get; set; }
+        public string MobileNumber { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int SchoolId { get; set; }
+        //public int SubjectId { get; set; }
+        public string Salutation { get; set; }
+        //public int GradeId { get; set; }
+    }
+
 }

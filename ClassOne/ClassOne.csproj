@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -121,14 +129,1413 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\School.cs" />
+    <Compile Include="Models\AboutU.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AddWishList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Add_To_Cart.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Age.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppRelease.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Backend_Login_Details.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bank.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaseData.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Board.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Board_Mapping_Standard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Brand.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart_Paackage_Mapping_Product.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category_Mapping_Brands.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category_Mapping_SubCategory.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckShippingPriceProduct_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\City.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class1Roles.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class1_StuRegistration.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClassOneEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassOneEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClassOneEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClassOneEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassOneEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class_one_subjects.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COD_Payment_Details.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContactUsDetail.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContactUsIssue.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Country.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Coupon.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Coupon1.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CouponTry.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CouponType.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Coupon_Mapping_Order.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Courier.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CourierBankDetail.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CourierLogin.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Courier_Company_Name.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Courier_Mapping_RunnerBoy.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerAnnotation.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerMappingStudent.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerOrder_Mapping_OrderStatus.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerOrder_Mapping_ShippingStatus.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerSM.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customers_Login.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Address.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Coupon.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Feedback.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Mapping_Category_Mapping_Filter_Selection.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Mapping_OTP.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Mapping_Scholarshippoints.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Mapping_School.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Package_Feedback_Rating.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Product_Rating.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Replacement_Order.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_WishList.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Delivery_Feedback.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Discount.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FAQ.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FCM_Token.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FeedbackRatingDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FetchStuRegiDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FilterSubCategoryProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\General_Specification.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAge_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAllStandards_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBoardsStandards_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBoardStandard_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBoards_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBrands_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCartDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCategory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCityStateDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetContactUsDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetContactUsIssue_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDefaultAddress_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetFAQ_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetFeedbackAndRatingCount_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetFeedbackAndRatingCustomerDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetFeedbackAndRating_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetIsRewardProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetNotifications_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetOrderPackages_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetOrderProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetPackageDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetPackageFeedbackAndRatingCount_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetPackageProductsDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetPackageProductsList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetPayementFormat_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetPaymentStatus_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetProductDescription_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetProduct_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetRegistrationDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetReplacementReason_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSchools_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSortProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSpecificationDescription_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSpecification_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStandard_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSubCategoryCategory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSubCategory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetTermsAndConditions_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetWishList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HomeBanners_17_10_16_rj_bkp_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HomePageContent.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HomePageContentMappingContent.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Image.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LandingBanner.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Legal.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Legal_And_Information.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Login_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notification.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NotificationType.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderAddress.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderStatu.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderStatusHistory.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Orders_Mapping_Product_Package.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Orders_Mapping_Product_Package_Mapping_Products.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Image.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Logistics_Delivery_Status.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Mapping_Courier.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Mapping_Payment_Transaction_Details.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Mapping_RunnerBoy.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Mapping_Tracking_Number.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Mapping_Transaction.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Mapping_Undelivered_Reason.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Payment_Mode.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Price.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Replacement.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PackageFeedbackRatingDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Commission_Supplier.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Discount.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Highlights.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Images.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Inventory_Mapping_Supplier_Mapping_School.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Mapping_Board.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Mapping_BoardStandard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Mapping_Products.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Mapping_School.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Mapping_SchoolBoardStandard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Mapping_ShippingCost.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Mapping_Standard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Of_Package.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Package_Of_Package_Mapping_Package.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payment_Format.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payment_Format_Mapping_Package.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payment_Format_Mapping_School.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payment_Status.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PaynimoPaymentSuccessDetail.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PinCode.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Portal_GetDefaultAddress_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PreallocatedAwbno.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrivacyPolicy.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductImages_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductPriceRange.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Commission_Supplier.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Discount.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Highlights.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_History.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Images.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Mapping_Board.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Mapping_BoardStandard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Mapping_CateogoryMappingSubCategory.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Mapping_GeneralSpecification.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Mapping_School.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Mapping_Standard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Mapping_Suppliers.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Mapping_Suppliers_SKUCode.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Taxation.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Type.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publisher_Mapping_Brand.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reedem_Products_Shipping_Charges.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Refund.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role1.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScholarshipContent.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScholarshipPoint.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScholarshipPointDonationCertificateType.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScholarshipPointRange.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\School.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolBoard_Mapping_Standard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolModel.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolStoreBranch.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolStoreDonationCertificate.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolStorePoint.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolStuffDonation.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\School_Format.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\School_Format_Mapping_School.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\School_Mapping_Board.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\School_Mapping_Package_Of_Package.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\School_Mapping_ShippingCharges.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\School_Mapping_Standards.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\School_Mapping_Supplier_Mapping_Settelment.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Semester.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShippingCharge.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShippingCharge_Mapping_Supplier.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShippingStatu.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SMS_Template.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SPCourierLogin_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SplitString_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Backend_GetCustomerReplacement_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_Backend_GetOrderDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Backend_GetOrderProductList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Backend_GetOrderTransitionHistory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Backend_GetPackages_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Backend_GetProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_Backend_UpdatePackageMappingProduct_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Standard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Standard_Mapping_Package_Of_Package.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\State.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Status_Assign_Task.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Students_Login.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student_Mapping_Product.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubCategory.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubCategory_Mapping_GeneralSpecification.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subject.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubjectMappingStandard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubVendor.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubVendorMappingCategory.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supervisor_Mapping_School.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupplierContactNumber.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupplierLogin_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Suppliers_Login.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier_Emails.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier_Mapping_BannerImage.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier_Mapping_Standard.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tax.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tax_History.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tax_Type.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Teacher.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TeacherGradeMapping.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TeacherMaster.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TeacherRegistration.cs" />
+    <Compile Include="Models\Teachers_Login.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempInventory.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempRating.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TermsCondtion.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ticket.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TicketCategory.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TicketComment.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TicketPriority.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TicketSource.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TicketStatu.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TriggerFireLog.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Undelivered_Reason.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\User_OTP_Details.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CRUDAppRelease_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CRUDCoupon_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CRUDCourier_Mapping_RunnerBoy_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CRUDPublisher_Mapping_Brand_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CRUDReedem_Products_Shipping_Charges_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CRUDScholarshipPointDonationCertificateType_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CRUDTicketComment_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CRUDUndelivered_Reason_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CustomerOrderDetailsNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CustomerOrderDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_DirectorySmartFiltertest_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_DirectorySmartFilter_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Directory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllOrdersPaginatedForSuerAdminWithAWBNO_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllOrdersPaginatedForSuerAdmin_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllOrdersPaginatedWithAWBNO_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllOrdersPaginated_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllPackagePaymentModes_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllSchlPackagePaymentModes_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllSchoolMultipleAddress_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllSchoolPaymentModes_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllSchoolShippingCharges_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllTickets_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAwbnoOrderDetailsForRunnerBoy_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAwbnoOrderDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetB2BOrdersExporting_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetB2BOrdersWithReplaceFlag_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetB2BOrders_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCartCustomerList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCategoryFilter_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCategoryList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCategoryMappingBrands_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCategoryMappingSubCategory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCategoryWiseContentForCustomization_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCategoryWiseProductsWithCustomerWishlistCount_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCertificateDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCouponTypeList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCourierAssignableOrders_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCourierOrders_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerAllOrders_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerCartPackagesList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerCartProductsListNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerCartProductsList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerInvoice_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerMappingProductList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerNotificationList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerScholarshipPointDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerSchoolStandards_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomersListPagination_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomersListWithOrderCount_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomersList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomersLoginHistory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomersPaginatedList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerWishlistNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCustomerWishlist_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetDashboardCountsByCustomer_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetDataOperatorsListReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetDataOperatorsList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetDatewiseCourierAllocationStat_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetFCMTokens_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetFileUrl_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetFilterCriterias_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetFilteredProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetFilteredTickets_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetGSTReoprt_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetGSTReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetLogisticsStastics_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetMISReportsNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetMISReports_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetMobileAndFcmKeyForCouponNotificationList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetModelWiseSchoolListWithVendor_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetModelWiseSchoolList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetModelWiseStandSubjList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetNewOrdersProductReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderChangeStatusList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderDeliveryFeedbackList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderEmail_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderForVXpressByOrder_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderLogisticsStatus_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderOptionalProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderPackageProductList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderPackedEmail_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderPaymentModeAndPaymentStatusAndOrderStatus_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderPaymentModeList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsByCategoryAndISBN_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsByCategory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsCourier_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsNewUnique_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsOLD_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsWithAvailabilityWithDisplayUnitPriceFagAndPurchaseFromMarketFlag_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsWithAvailabilityWithDisplayUnitPriceFag_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsWithAvailability_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsWithAvailableStatus_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProductsWithCategory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_getOrderRefundHistory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderShippingStatusWise_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderShippingStatusWithRanking_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderShippingStatus_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrdersProductReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderUpdateEmail_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetOrderWiseLogisticsStatusBySchool_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_getOrderWithRefundableAmount_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageDetailsListSupplierWiseNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageDetailsListSupplierWise_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageDetailsList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageDetailsWithProductListNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPAckageDetailsWithProductList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageFeedbackList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageFeedback_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageHighlights_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageMappingProducListNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageMappingProducList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageMappingProductListForCustomizationWithMarketPurchaseFlag_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageMappingProductListForCustomization_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageOfPackageDetailsWithProductList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageOfPackagesBySchoolAndStandard_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageOrderEmail_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageOrdersForEmail_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageProductList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageRatings_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackagesListNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackagesList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPackageWisePaymentModes_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPendingProductReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPortalHomePageCustomizationContent_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetProductComissionList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetProductDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetProductFeedbackList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetProductHighlights_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetProductImages_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetProductListPaginated_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetProductRatings_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetProductsForOrders_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetProductSpecifications_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPublishersNonUploadedBooks_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetReedemableProductList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetRefundReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetRunnerBoyCourierList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetRunnerBoyStats_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolComissionWithShippingStatusAndPaymentModeWithDateFilter_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolComissionWithShippingStatusAndPaymentMode_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolCustomersListPaginationWithStudentIDWithStandardId_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolCustomersListPaginationWithStudentID_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolCustomersListPagination_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolMappingPackageInventory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolSettelmentsNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolSettelmentsWithShippingCharges_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolSettelments_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolStandardsMappingSupplier_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolStandards_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolStoreBranchList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolStoreReaderBooksList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolStoreSchoolWiseStats_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolSupplierSettlementList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolTicketReporting_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolWiseOrderDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolWiseOrdersForRadClf_SchoolsNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolWiseOrdersWithDateFilterNew_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolWiseOrdersWithDateFilter_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSchoolWiseOrders_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSentSMS_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetStadardWiseProductFileList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetStandardProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetStudentDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetStudentsByCustomer_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSubVendorOrdersList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSuperAdminDashboardPaymentFormat_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSuperAdminDashboard_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSuperAdminSchoolDashboard_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSupplierDashboardWithFilter_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSupplierDashboard_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSupplierMappingSchoolStandards_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSupplierOrdersStatusCount_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSuppliersB2COrders_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetSupplierSchoolStandardsList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTempInventory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTicketCategoryReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTicketCategory_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTicketPriorityReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTicketPriority_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTicketSourceReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTicketSource_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTicketStatusReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTicketStatus_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetTopMostSellingProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetUndeliveredAttempts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetUndeliveredProducts_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetUploadedEBooksList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetYearList_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_InsertISBNProductDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_InsertProductDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_ManipulateOTPWithSchool_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_ManipulateOTP_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_NewOrdersAndPendingProductReport_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Package_Mapping_Shipping_Cost_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_RegisterStudent_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_RunnerBoyLogin_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_SearchOrder_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_SearchTickets_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_SendMeAppLink_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_VerifyCoupon_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_VerifyUserLogin_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VXpressStatu.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Warehouse.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Year.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +1750,42 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\ClassOneEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ClassOneEntities.Context.cs</LastGenOutput>
+      <DependentUpon>ClassOneEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ClassOneEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClassOneEntities.edmx</DependentUpon>
+      <LastGenOutput>ClassOneEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-aria.js" />
+    <Content Include="Scripts\angular-aria.min.js" />
+    <Content Include="Scripts\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies.min.js" />
+    <Content Include="Scripts\angular-csp.css" />
+    <Content Include="Scripts\angular-loader.js" />
+    <Content Include="Scripts\angular-loader.min.js" />
+    <Content Include="Scripts\angular-message-format.js" />
+    <Content Include="Scripts\angular-message-format.min.js" />
+    <Content Include="Scripts\angular-messages.js" />
+    <Content Include="Scripts\angular-messages.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-parse-ext.js" />
+    <Content Include="Scripts\angular-parse-ext.min.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-sanitize.js" />
+    <Content Include="Scripts\angular-sanitize.min.js" />
+    <Content Include="Scripts\angular-touch.js" />
+    <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Design\fonts\poppins\poppins-v5-latin-100.eot" />
@@ -448,6 +1891,25 @@
     <Content Include="Design\vendor\slick\slick-theme.scss" />
     <Content Include="Design\vendor\slick\slick.less" />
     <Content Include="Design\vendor\slick\slick.scss" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular-message-format.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-parse-ext.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <EntityDeploy Include="Models\ClassOneEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClassOneEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ClassOneEntities.edmx.diagram">
+      <DependentUpon>ClassOneEntities.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -476,9 +1938,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Teacher\TeacherLogin.cshtml" />
     <Content Include="Views\Teacher\TeacherRegistration.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Student\Student.cshtml" />
+    <Content Include="Views\Teacher\Teacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -492,6 +1959,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

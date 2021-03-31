@@ -1,0 +1,490 @@
+﻿
+@{
+    ViewBag.Title = "Student";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+@*<h3 style="text-align:center">Student Registration</h3>*@
+
+    <script>
+    layout1.controller("myLoginCtrl", function ($scope, $http) {
+        $scope.UserName = '@User.Identity.Name';
+        $scope.LoginResult = {};
+        $scope.RegisterResult = {};
+        $scope.Alldisabled = "true";
+        $scope.LoginButtonText = "Login";
+        $scope.RegisterButtonText = "Register";
+        $scope.ForgotButtonText = "Forgot Password";
+
+        $scope.OtpSendButtonText = "Send OTP";
+        $scope.OtpVerifiedButtonText = "Verify";
+        $scope.verifieddisabled = "false";
+        $scope.phoneNumbr = /^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/;
+        $scope.EmailPattern = /^[a-z]+[a-z0-9._]+@@[a-z]+\.[a-z.]{2,5}$/;
+
+        console.log("otpmsg" + $scope.OtpSendButtonText);
+
+        $http.get('/Student/GetSchoolStandardList')
+            .then(function (response) {
+                $scope.SchoolStandardList = response.data;
+                $scope.SchoolStandardVendor = $scope.SchoolStandardList[0];
+                $scope.PackageSelect = { SchoolId: $scope.SchoolStandardList[0].SchoolId, StandardId: null };
+                //////console.log(response);
+                
+                if ($scope.SelectedSchoolId != 0) {
+                    //alert(1);
+                    ////console.log($scope.SchoolStandardList);
+                    $scope.SchoolStandardVendor = $scope.SchoolStandardList[$scope.functiontofindIndexByKeyValue($scope.SchoolStandardList, "SchoolId", $scope.SelectedSchoolId)];
+                    $scope.PackageSelect.SchoolId = $scUrlpAction.SelectedSchoolId;
+                    //console.log($scope.SchoolStandardVendor, $scope.PackageSelect);
+                }
+                $http.get('/Student/GetSchoolType')
+                    .then(function (response) {
+                        $scope.SchoolTypeId = response.data.SchoolModelId;
+                        $scope.SchoolStandards = response.data.SchoolStandards;
+                        console.log("standardList" + response.data.SchoolStandards);
+                        //////console.log($scope.SchoolStandards);
+                        for (var i = 0; i < $scope.SchoolStandards.length - 1; i++) {
+                            $scope.SchoolStandards[i].SchoolModelId = $scope.SchoolTypeId;
+                            if ($scope.SchoolStandards[i].IsStudentPresent) {
+                                $scope.CustomerMappingStudentId = $scope.SchoolStandards[i].CustomerMappingStudentId;
+                            }
+                            //////console.log($scope.CustomerMappingStudentId);
+                        }
+                        if ($scope.SchoolTypeId == 2) {
+                            //$scope.SchoolStandardVendor = $scope.SchoolStandards[0];
+                            $scope.PackageSelect = { SchoolId: $scope.SchoolStandards[0].SchoolId, StandardId: $scope.SchoolStandards[0].StandardId };
+                        }
+                        //console.log($scope.SchoolStandardVendor, $scope.PackageSelect);
+                    });
+                console.log("SchoolList" + JSON.stringify(response.data));
+            });
+        $scope.Login = function () {
+            if ($scope.Password.length <= 5) {
+                $scope.Password_Message = 'Password min length 6';
+                $scope.Password = '';
+                $scope.LoginButtonText = "Login";
+                $scope.Alldisabled = "true";
+            }
+            else {
+                $scope.LoginButtonText = "Logging In...";
+                $scope.Alldisabled = "false";
+                $scope.OTPvarify
+                $scope.LoginDetails = {
+                    'UserName': $scope.UserName,//
+                    'Password': $scope.Password,
+                    'EmailId': $scope.UserName,
+                    'MobileNumber': $scope.UserName
+                }
+                var req = {
+                    method: 'POST',
+                    url: '/Student/StudentLogin',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: { model: $scope.LoginDetails }
+                }
+                //console.log(req);
+                $http(req).then(function (response) {
+                    $scope.LoginResult = response.data;
+                    console.log("logindata" + JSON.stringify(response.data));
+                    if ($scope.LoginResult.Password_Message == "* Invalid Password") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Success...',
+                            text: '* Invalid Password'
+                        })
+                    }
+                    else if ($scope.LoginResult.Username_Message == "* Invalid Mobile No / Email Id") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Register Error...',
+                            text: '* Invalid Mobile No / Email Id'
+                            //footer: '<a href>Why do I have this issue?</a>'
+                        })
+                    }
+                    if ($scope.LoginResult.Login == true) {
+                        console.log("Enter");
+                        window.location.href = '/Home/Dashboard';//
+                    }
+                    $scope.LoginButtonText = "Login";
+                    $scope.Alldisabled = "true";
+                });
+            }
+        }
+
+        $scope.RegisterUser = function () {
+            $scope.CnfPasswordDidntMatch = '';
+            if ($scope.Password.length <= 5) {
+                $scope.CnfPasswordDidntMatch = 'Password Min length is 6';
+                $scope.Password = '';
+                $scope.CnfPassword = '';
+                $scope.RegisterButtonText = "Register";
+                $scope.Alldisabled = "true";
+            }
+            else {
+                if ($scope.Password != $scope.CnfPassword) {
+                    $scope.CnfPasswordDidntMatch = 'Password didnt match';
+                    $scope.Password = '';
+                    $scope.CnfPassword = '';
+                    $scope.RegisterButtonText = "Register";
+                    $scope.Alldisabled = "true";
+                }
+                else {
+                    $scope.submmitform = "Registering ...";
+
+                    $scope.RegisterDetails = {
+                        'OrderNumber': $scope.OrderNumber,
+                        'Username': $scope.UserName,
+                        'StudentName': $scope.StudentName,
+                        'StMobNo': $scope.StMobNo,
+                        'EmailId': $scope.EmailId,
+                        'SchoolId': $scope.SchoolId,
+                        'StandardId': $scope.StandardId,//Grade
+                        'Division': $scope.StDivision,
+                        'Password': $scope.Password,
+                        //'StudentId': $scope.StudentId,
+                        //'SchoolId': $scope.SchoolId,
+                        //'ChildName': $scope.StudentName,
+                        //'MobileNumber': $scope.StMobNo,                        
+                        //'GradeID': $scope.GradeId,
+                        //'Division': $scope.StDivision,
+                        //'Email': $scope.StDivision
+                    }
+                    var req = {
+                        method: 'POST',
+                        url: '/Student/StudentRegister',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data: { model: $scope.RegisterDetails }
+
+                    }
+
+                    $http(req).then(function (response) {
+                        $scope.RegisterResult = response.data;
+                        console.log($scope.RegisterResult);
+
+                        if ($scope.RegisterResult.Register == true) {
+                            window.location.href = '/Home/Dashboard';//
+                        }
+                        //console.table($scope.LoginResult);
+                        //$scope.RegisterButtonText = "Login";
+                        $scope.Alldisabled = "true";
+                    });
+                }
+            }
+        }
+
+        //---------------OTP-----------------//
+        $scope.OtpSentToUser = function () {
+            if ($scope.OrderNumber == undefined) {
+                Swal.fire({
+                    icon: 'Error',
+                    title: 'Order Id',
+                    text: 'Please enter Order Id.'
+                })
+                //$scope.OtpVerifiedButtonText = "Verify";
+                return false;
+            }
+            else {
+                var element1 = document.getElementById("SendOTP");
+                element1.disabled = true;
+                var element = document.getElementById("OTPverify");
+                element.disabled = false;
+                var element = document.getElementById("OTPVerfyOtp");//OTPVerfyOtp
+                element.disabled = false;
+                //$scope.toggleButton1 = false OTPverify
+                let timerOn = true;
+                function timer(remaining) {
+                    var m = Math.floor(remaining / 60);
+                    var s = remaining % 60;
+                    m = m < 10 ? '0' + m : m;
+                    s = s < 10 ? '0' + s : s;
+                    document.getElementById('timer').innerHTML = 'Resend OTP : ' + s;
+                    remaining -= 1;
+                    if (remaining >= 0 && timerOn) {
+                        setTimeout(function () {
+                            timer(remaining);
+                        }, 1000);
+                        return;
+                    }
+                    if (!timerOn) {
+                        //$scope.SendOTP = false
+                        // Do validate stuff here
+                        //$scope.SendOTP.Alldisabled = false;
+                        return;
+                    }
+                    else {
+                        element1.disabled = false;
+                        document.getElementById('timer').innerHTML = '';
+                        $scope.OtpSendButtonText = "Resend OTP";
+                    }
+                    // Do timeout stuff here
+                    //alert('Timeout for otp');
+                }
+                timer(30);
+                $scope.OtpSendButtonText = "Sending ...";
+                //if ($scope.MobileNumber == undefined) {
+                //    $scope.OtpSendButtonText = "Send OTP";
+                //    return false;
+                //}
+                MobileNumber = $scope.OrderNumber;
+                var req = {
+                    method: 'POST',
+                    url: '/Student/GenerateOTP?OrderNumber=' + MobileNumber,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                }
+                $http(req).then(function (response) {
+                    $scope.RegisterResult = response.data;
+                    console.log($scope.RegisterResult);
+
+                    $scope.OtpSendButtonText = "OTP Sent";
+                    $scope.sentdisabled = "true";
+                });
+            }
+        }
+
+        $scope.VerifiyOtp = function () {
+            $scope.OtpVerifiedButtonText = "Verifing ...";
+            var element = document.getElementById("OTPverify");
+            $scope.LoginDetails = {
+                'MobileOtp': $scope.OTPverify,
+                'OrderNumber': $scope.OrderNumber
+            }
+            var req = {
+                method: 'POST',
+                url: '/Student/OTPverifyCode',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: { model: $scope.LoginDetails }//
+            }
+            $http(req).then(function (response) {
+                $scope.RegisterResult = response.data;
+                console.log($scope.RegisterResult);
+                //$scope.MobileOtp_Message = '';
+                if ($scope.RegisterResult.status == false) {
+                    //console.log("enter" + $scope.RegisterResult);
+                    //$scope.MobileOtp_Message1 = 'otp didnt match';
+                    //$scope.RegisterResult.MobileOtp_Message = $scope.RegisterResult.message;
+                    $scope.sentdisabled = "false";
+                    $scope.verifieddisabled = "false";
+                    $scope.OtpVerifiedButtonText = "Verify"
+                    return false;
+                }
+                console.log("verifydata" + JSON.stringify(response.data));
+                $scope.StudentName = response.data.StudentName;
+                $scope.StMobNo = response.data.StMobNo;
+                $scope.SchoolId = response.data.SchoolId;
+                $scope.StandardId = response.data.StandardId;
+                //$scope.GradeId = response.data.GradeId;
+                //$scope.SchoolId = response.data.SchoolId;
+                //$scope.StudentId = response.data.StudentId;
+
+                var element1 = document.getElementById("SendOTP");
+                element1.disabled = true;
+                var element = document.getElementById("OTPverify");
+                element.disabled = false;
+                var element = document.getElementById("OTPVerfyOtp");//OTPVerfyOtp
+                element.disabled = false;
+
+                $scope.OtpVerifiedButtonText = "Verified";
+                $scope.verifieddisabled = "true";
+            });
+        }
+    })
+    </script>
+
+
+<div class="animsition" data-ng-controller="myLoginCtrl">
+    
+    <div class="row d-flex justify-content-center">
+        <!-- /# column -->
+        <div class="col-lg-6" style="text-align:left">
+            <div class="card">
+                <div class="card-header" style="text-align:center">
+                    <h4>Student Registration</h4>
+                </div>
+                <div class="card-body">
+                    
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="slogin-tab" data-toggle="tab" href="#slogin" role="tab" aria-controls="slogin" aria-selected="true">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="sregistration-tab" data-toggle="tab" href="#sregistration" role="tab" aria-controls="sregistration" aria-selected="false">Registration</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pl-3 p-1" id="myTabContent">
+                        <div class="tab-pane fade show active" id="slogin" role="tabpanel" aria-labelledby="slogin-tab">
+                            <!--Login Content-->
+                            <div class="page-wrapper">
+                                <div class="page-content">
+                                    <div class="container">
+                                        <div class="login-wrap">
+                                            <div class="login-content">
+                                                <div class="login-logo">
+                                                    <a href="#">
+                                                        <img src="~/Design/images/icon/logo.png" alt="ClassOne">
+                                                    </a>
+                                                </div>
+                                                <div class="login-form">
+                                                    <form id="loginForm" name="loginForm">
+                                                        <div class="form-group">
+                                                            <b>Username, Email or Mobile No.<span class="red">*</span></b>
+                                                            <input class="au-input au-input--full" type="text" id="UserName" data-ng-model="UserName" name="UserName" placeholder="UserName" data-ng-disabled="Alldisabled=='false'" data-ng-required="true">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <b>Password<span class="red">*</span></b>
+                                                            <input class="au-input au-input--full" type="password" id="Password" data-ng-model="Password" data-ng-disabled="Alldisabled=='false'" [minlength]="nameMinLength">
+                                                            <span style="color: red;" data-ng-show="Password_Message">* {{Password_Message}}</span>
+                                                        </div>
+                                                        <div class="login-checkbox">
+                                                            <label>
+                                                                @*<input type="checkbox" name="remember">Remember Me*@
+                                                            </label>
+                                                            <label>
+                                                                <a href="#">Forgotten Password?</a>
+                                                            </label>
+                                                        </div>
+                                                        <button class="au-btn au-btn--block au-btn--green m-b-20" data-ng-click="Login()" data-ng-disabled="loginForm.$invalid || Password==null">{{LoginButtonText}}</button>                                                        
+                                                    </form>
+                                                    @*<div class="register-link">
+                                                        <p>
+                                                            Don't you have account?
+                                                            <a href="#">Sign Up Here</a>
+                                                        </p>
+                                                    </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end-->
+                        </div>
+                        <div class="tab-pane fade" id="sregistration" role="tabpanel" aria-labelledby="sregistration-tab">
+                            <!--Registration Content-->
+                            <div class="page-wrapper">
+                                <div class="page-content">
+                                    <div class="container">
+                                        <div class="login-wrap">
+                                            <div class="login-content">
+                                                <div class="login-logo">
+                                                    <a href="#">
+                                                        <img src="~/Design/images/icon/logo.png" alt="ClassOne">
+                                                    </a>
+                                                </div>
+                                                <div class="login-form">
+                                                    <form name="Register" id="Register">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="" id="OrderNumber" placeholder="Order Id" data-ng-model="OrderNumber" data-ng-disabled="Alldisabled=='false' " data-ng-required="true" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-success" data-ng-click="OtpSentToUser()" id="SendOTP" data-ng-disabled="!OrderNumber">{{OtpSendButtonText}}</button>
+                                                            </span>
+                                                        </div>
+                                                        <span style="color: red;" data-ng-show="MobileOtp_Message">{{MobileOtp_Message}}</span>
+                                                        <span style="color: red;" id="timer"></span>
+                                                        <br />
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="OTPverify" placeholder="Verify OTP" data-ng-required="true" data-ng-model="OTPverify" disabled />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-success" data-ng-click="VerifiyOtp()" id="OTPVerfyOtp" disabled>{{OtpVerifiedButtonText}}</button>
+                                                            </span>
+                                                        </div>
+                                                        <span style="color: red;" data-ng-show="RegisterResult.Status==false">{{MobileOtp_Message1}}</span>
+                                                        <br />
+                                                        <div class="form-group">
+                                                            <b>Username</b>
+                                                            <input class="au-input au-input--full" type="text" name="Username" placeholder="Username" data-ng-model="UserName" data-ng-disabled="Alldisabled=='false'">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <b>Student Name<span class="red">*</span></b>
+                                                            <input type="text" class="au-input au-input--full" id="StudentName" placeholder="Student Name " data-ng-model="StudentName" data-ng-disabled="Alldisabled=='false'||!OTPVerfyOtp" data-ng-required="true" />
+                                                            <span style="color: red;" data-ng-show="RegisterResult.Register==false">{{RegisterResult.LastName_Message}}</span>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <b>Phone No.</b>
+                                                            <input type="text" data-ng-pattern="phoneNumbr" class="au-input au-input--full" id="StMobNo" name="StMobNo" placeholder="Student Mobile Number if any" data-ng-model="StMobNo" data-ng-disabled="Alldisabled=='false'" data-ng-required="true" />
+                                                            <span style="color: red;" data-ng-show="RegisterResult.Register==false">{{RegisterResult.MobileNumber_Message}}</span>
+                                                            <span style="color: red;" data-ng-show="Register.StMobNo.$error.pattern">Please match pattern[ 99XXXXXXXX ]</span>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <b>Email Address</b>
+                                                            <input type="email" data-ng-pattern="EmailPattern" class="au-input au-input--full" id="EmailId" name="EmailId" placeholder="Email Id" data-ng-model="EmailId" data-ng-disabled="Alldisabled=='false'" />
+                                                            <span style="color: red;" data-ng-show="RegisterResult.Register==false">{{RegisterResult.EmailId_Message}}</span>
+                                                            <span style="color: red;" data-ng-show="Register.EmailId.$error.pattern">Please match pattern[ Some@gmail.com ]</span>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <b>School<span class="red">*</span></b>
+                                                            @*<input type="text" name="" class="form-control" id="StSchoolId" placeholder="School" data-ng-model="SchoolId" data-ng-disabled="Alldisabled=='false'||!OTPVerfyOtp" data-ng-required="true" />*@
+                                                            <select class="form-control" id="SchoolId" name="SchoolId"
+                                                                    data-ng-disabled="Alldisabled=='false' " data-ng-required="true"
+                                                                    data-ng-model="SchoolId"
+                                                                    data-ng-options="school.SchoolId as school.SchoolName for school in SchoolStandardList">
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <b>Grade<span class="red">*</span></b>
+                                                            @*<input type="text" name="" class="form-control" id="StGradeId" placeholder="Grade" data-ng-model="StandardId" data-ng-disabled="Alldisabled=='false'||!OTPVerfyOtp " data-ng-required="true" />*@
+                                                            <select class="form-control"
+                                                                    id="StandardId" name="StandardId"
+                                                                    data-ng-model="StandardId"
+                                                                    data-ng-disabled="!SchoolId || Alldisabled=='false'||!OTPVerfyOtp"
+                                                                    data-ng-required="true"
+                                                                    data-ng-options="std.StandardId as std.StandardName for std in SchoolStandardList|filter:{SchoolId:SchoolId}:true">
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <b>Division<span class="red">*</span></b>
+                                                            <input type="text" name="" class="form-control" id="StDivision" placeholder="Division" data-ng-model="StDivision" data-ng-disabled="Alldisabled=='false' " data-ng-required="true" />
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <b>Choose Password<span class="red">*</span></b>
+                                                            <input type="password" name="" class="form-control" id="RegisterPassword" placeholder="Choose Password" data-ng-model="Password" data-ng-disabled="Alldisabled=='false' " data-ng-required="true" />
+                                                            <span style="color: red;" data-ng-show="CnfPasswordDidntMatch">* {{RegisterPasswordDidntMatch}}</span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <b>Confirm Password<span class="red">*</span></b>
+                                                            <input type="password" name="" class="form-control" id="CnfPassword" placeholder="Confirm Password" data-ng-model="CnfPassword" data-ng-disabled="Alldisabled=='false' " data-ng-required="true" />
+                                                            <span style="color: red;" data-ng-show="CnfPasswordDidntMatch">* {{CnfPasswordDidntMatch}}</span>
+                                                        </div>
+                                                        @*<div class="login-checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="aggree">Agree the terms and policy
+                                                            </label>
+                                                        </div>*@
+                                                        <button class="au-btn au-btn--block au-btn--green m-b-20" data-ng-click="RegisterUser()" data-ng-disabled="Alldisabled=='false' ||!Register.$valid ">{{RegisterButtonText}}</button>
+                                                    </form>
+                                                    @*<div class="register-link">
+                                                        <p>
+                                                            Already have account?
+                                                            <a href="#slogin">Sign In</a>
+                                                        </p>
+                                                    </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End-->
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

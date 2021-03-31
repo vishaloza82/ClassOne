@@ -7,27 +7,25 @@ using System.Web.Security;
 using ClassOne.Models;
 using System.Net.Mail;
 using System.Net;
+using System.Net.Sockets;
 
 namespace ClassOne.Controllers
 {
     public class TeacherController : Controller
     {
+        ClassOneEntities db = new ClassOneEntities();
         //Registration Action
+        public ActionResult Teacher()
+        {
+            //var model = new TeacherVM();
+            return View();
+        }
         [HttpGet]
         public ActionResult TeacherRegistration()
         {
-            
-            School objSchool = new School();
-            objSchool.Id = "1";
-            objSchool.Name = "Dhirubhai Ambani";
-            List<School> objSchoolList = new List<School>();
-            objSchoolList.Add(objSchool);
+            var Schools = db.Schools.Where(x => x.DeleteStatus == 0).ToList();
 
-            School objSchool1 = new School();
-            objSchool1.Id = "2";
-            objSchool1.Name = "Singhania";
-            objSchoolList.Add(objSchool1);
-            TeacherRegistration objTeacher = new TeacherRegistration(objSchoolList);
+            TeacherRegistration objTeacher = new TeacherRegistration(Schools);
             // Instead of Line 20 - 30 Call the API to get school list
             
             objTeacher.Salutation = new List<string>();
@@ -68,16 +66,74 @@ namespace ClassOne.Controllers
                 teacher.IsEmailVerified = false;
 
                 // Logic API Call To save the Teacher's details in the Database. Pass the teacher object to API
+                #region Registration
+                LoginVM result = new LoginVM();
+                #region CHECK EXISTING USER
+                Teacher _existingTeacher = db.Teachers.Where(
+                                                t => t.EmailId == teacher.Email
+                                                    || t.MobileNumber == teacher.MobileNumber.ToString()).FirstOrDefault();
+                if (_existingTeacher != null)
+                {
+                    if (_existingTeacher.MobileNumber == teacher.MobileNumber.ToString())
+                    {
+                        result.MobileNumber_Message = "Already Registered Mobile Number, please login";
+                    }
+                    if (_existingTeacher.EmailId == teacher.Email)
+                    {
+                        result.EmailId_Message = "Already Registered Email Id, please login";
+                    }
+                }
+                #endregion
+                #region INSERT TEACHER DETAILS IF NOT EXISTS
+                else
+                {
+                    #region CUSTOMER
+                    Teacher c = new Teacher();
+                    c.RoleId = 1;
+                    c.SchoolId = teacher.SchoolId;
+                    c.Salutation = teacher.Salutation.ToString();
+                    c.FirstName = teacher.FirstName;
+                    c.LastName = teacher.LastName;
+                    c.EmailId = teacher.Email;
+                    c.MobileNumber = teacher.MobileNumber.ToString();
+                    c.Password = teacher.Password;
+                    //c.GradeId = teacher.GradeId;
+                    //c.SubjectId = teacher.SubjectId;
+                    c.CreatedDate = DateTime.Now;
+                    c.UpdatedDate = DateTime.Now;
+                    c.DeleteStatus = 0;
+                    c.IsEmailVerified = false;
+                    db.Teachers.Add(c);
+                    db.SaveChanges();
 
+                    #endregion
+
+                    #region LOGIN USER
+                    FormsAuthentication.SignOut();
+
+                    Teachers_Login _teacher_login = new Teachers_Login();
+                    _teacher_login.TeacherId = c.TeacherId;
+                    _teacher_login.LastLoginDate = DateTime.Now;
+                    _teacher_login.LastLoginIp = GetLocalIPAddress();
+                    _teacher_login.LogoutTime = null;
+                    _teacher_login.CreatedDate = DateTime.Now;
+                    _teacher_login.UpdatedDate = DateTime.Now;
+                    _teacher_login.DeleteStatus = 0;
+
+                    db.Teachers_Login.Add(_teacher_login);
+                    db.SaveChanges();
+
+                    FormsAuthentication.SetAuthCookie(c.EmailId, true);
+                    #endregion
+                }
+                #endregion
+                #endregion
 
                 //Send Email to User after record saved to DB
                 SendVerificationLinkEmail(teacher.Email, teacher.ActivationCode.ToString());
                 message = "Registration successfully done. Account activation link " +
                     " has been sent to your email id:" + teacher.Email;
                 Status = true;
-
-
-
             }
             else
             {
@@ -116,6 +172,7 @@ namespace ClassOne.Controllers
         [HttpGet]
         public ActionResult TeacherLogin()
         {
+            //var model = new TeacherLoginVM();
             return View();
         }
 
@@ -127,6 +184,16 @@ namespace ClassOne.Controllers
             string message = "";
             var v = new TeacherRegistration();
             // Insert Line of Code to make API Call to fetch the teahcers details.
+            #region Fetch Teacher Detail
+            Teacher _teacher = db.Teachers.Where(t => t.EmailId == login.EmailID && (t.DeleteStatus == 0)).FirstOrDefault();
+            v.SchoolId = (int)_teacher.SchoolId;
+            v.FirstName = _teacher.FirstName;
+            v.LastName = _teacher.LastName;
+            v.MobileNumber = Convert.ToInt32(_teacher.MobileNumber);
+            v.Email = _teacher.EmailId;
+            v.Password = _teacher.Password;
+            v.IsEmailVerified = _teacher.IsEmailVerified; 
+            #endregion
             if (v != null)
             {
                 if (!v.IsEmailVerified)
@@ -144,7 +211,6 @@ namespace ClassOne.Controllers
                     cookie.Expires = DateTime.Now.AddMinutes(timeout);
                     cookie.HttpOnly = true;
                     Response.Cookies.Add(cookie);
-
 
                     if (Url.IsLocalUrl(ReturnUrl))
                     {
@@ -182,7 +248,8 @@ namespace ClassOne.Controllers
         [NonAction]
         public bool IsEmailExist(string emailID)
         {
-            TeacherRegistration objteacher = new TeacherRegistration();
+            //TeacherRegistration objteacher = new TeacherRegistration();
+            var objteacher = db.Teachers.Where(x => x.EmailId == emailID && x.DeleteStatus == 0).FirstOrDefault();
             //objteacher =  Get API Call to get the Teacher Details based on Email ID
             if (objteacher == null)
                 return false;
@@ -223,5 +290,17 @@ namespace ClassOne.Controllers
                 smtp.Send(message);
         }
 
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("CANNOT ACCESS");
+        }
     }
 }

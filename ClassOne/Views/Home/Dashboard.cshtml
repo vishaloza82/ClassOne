@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dashboard</h2>
+
+<script>
+    layout1.controller("myDashboardCtrl", function ($scope, $http) {
+        $http.get('/login/GetCurrentUser')
+            .then(function (response) {
+                $scope.CurrentUser = response.data;
+                if (!$scope.CurrentUser) {
+                    $scope.CurrentUser = {
+                        'FirstName': 'GUEST',
+                        'StudentId': 0,
+                        'SchoolId': 0
+                    };
+                }
+                //
+                sessionStorage.setItem("CustomerId", $scope.CurrentUser.CustomerId == 0 ? null : $scope.CurrentUser.CustomerId);//
+                localStorage.setItem("CustomerId", $scope.CurrentUser.CustomerId == 0 ? null : $scope.CurrentUser.CustomerId);//
+                //
+                CustomerId = $scope.CurrentUser.StudentId;
+                SchoolId = $scope.CurrentUser.SchoolId;//
+            })
+    })
+</script>
+

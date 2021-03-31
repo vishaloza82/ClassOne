@@ -41,12 +41,11 @@ namespace ClassOne.Models
         public IEnumerable<SelectListItem> SchoolList
         {
             get 
-            {
-               
+            {               
                     var allSchools = _schoolList.Select(f => new SelectListItem
                     {
-                        Value = f.Id.ToString(),
-                        Text = f.Name
+                        Value = f.SchoolId.ToString(),
+                        Text = f.SchoolName
                     });
                     return DefaultSchool.Concat(allSchools);
             }
@@ -100,5 +99,11 @@ namespace ClassOne.Models
         public Guid ActivationCode { get; set; }
 
 
+    }
+    
+    public class TeacherVM
+    {
+        public TeacherRegistration TeacherRegistration { get; set; }
+        public TeacherLoginVM TeacherLoginVM { get; set; }
     }
 }
