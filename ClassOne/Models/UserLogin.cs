@@ -32,9 +32,14 @@ namespace ClassOne.Models
 
     public class TeacherLoginVM
     {
+        [Display(Name = "User Name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "User Name Required")]
         public string UserName { get; set; }
         public int RoleId { get; set; }
         public string EmailId { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Password required")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         public string MobileNumber { get; set; }
         public string FirstName { get; set; }

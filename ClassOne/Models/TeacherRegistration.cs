@@ -13,40 +13,53 @@ namespace ClassOne.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class Salutation
+    {
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+    }
+
 
     public class TeacherRegistration
     {
 
         private readonly List<School> _schoolList;
+        private readonly List<Salutation> _titles;
 
         public TeacherRegistration()
         {
 
         }
-        public TeacherRegistration(List<School> schoolList)
+        public TeacherRegistration(List<School> schoolList,List<Salutation> lstTitles)
         {
             _schoolList = schoolList;
+            _titles = lstTitles;
 
         }
 
-        [Display(Name = "School")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "School Required")]
+
+
+        //[Display(Name = "School")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "School Required")]
 
         public School School { get; set; }
 
         [Display(Name = "School Name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "School Required")]
         public int SchoolId { get; set; }
 
+        
 
         public IEnumerable<SelectListItem> SchoolList
         {
             get 
-            {               
-                    var allSchools = _schoolList.Select(f => new SelectListItem
-                    {
-                        Value = f.SchoolId.ToString(),
-                        Text = f.SchoolName
-                    });
+            {
+                var allSchools = _schoolList.Select(f => new SelectListItem
+                {
+                    Value = f.SchoolId.ToString(),
+                    Text = f.SchoolName,
+                }) ;
                     return DefaultSchool.Concat(allSchools);
             }
         }
@@ -63,8 +76,40 @@ namespace ClassOne.Models
             }
         }
 
-        public List<string> Salutation { get; set; }
+        public int SalutationId { get; set; }
 
+
+        public IEnumerable<SelectListItem> Salutation
+        {
+            get
+            {
+                var allTitles = _titles.Select(f => new SelectListItem
+                {
+                    Value = f.Id.ToString(),
+                    Text = f.Title,
+                });
+                return DefaultTitle.Concat(allTitles);
+            }
+        }
+
+
+        public IEnumerable<SelectListItem> DefaultTitle
+        {
+            get
+            {
+                return Enumerable.Repeat(new SelectListItem
+                {
+                    Value = "-1",
+                    Text = "Select Title"
+                }, count: 1);
+            }
+        }
+
+       
+
+        
+        
+        
         [Display(Name = "First Name")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "First name required")]
         public string FirstName { get; set; }
@@ -74,9 +119,10 @@ namespace ClassOne.Models
         public string LastName { get; set; }
 
         [Display(Name = "Mobile Number")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Mobile Number")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Mobile Number is Required")]
+        //[RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Please Enter Valid Mobile Number.")]
         [DataType(DataType.PhoneNumber)]
-        public int MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
 
         [Display(Name = "Email ID")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Email ID required")]

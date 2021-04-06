@@ -23,15 +23,31 @@ namespace ClassOne.Controllers
         [HttpGet]
         public ActionResult TeacherRegistration()
         {
+            
             var Schools = db.Schools.Where(x => x.DeleteStatus == 0).ToList();
 
-            TeacherRegistration objTeacher = new TeacherRegistration(Schools);
+            List<Salutation> lstSalutation = new List<Salutation>();
+            Salutation objTitleMr = new Salutation();
+            objTitleMr.Id = 1;
+            objTitleMr.Title = "Mr";
+            lstSalutation.Add(objTitleMr);
+
+            Salutation objTitleMrs = new Salutation();
+            objTitleMrs.Id = 2;
+            objTitleMrs.Title = "Mrs";
+            lstSalutation.Add(objTitleMrs);
+            Salutation objTitleMiss = new Salutation();
+            objTitleMiss.Id = 3;
+            objTitleMiss.Title = "Miss";
+            lstSalutation.Add(objTitleMiss);
+
+
+
+
+            TeacherRegistration objTeacher = new TeacherRegistration(Schools,lstSalutation);
             // Instead of Line 20 - 30 Call the API to get school list
             
-            objTeacher.Salutation = new List<string>();
-            objTeacher.Salutation.Add("Mr");
-            objTeacher.Salutation.Add("Mrs");
-            objTeacher.Salutation.Add("Miss");
+            
             return View(objTeacher);
         }
         //Registration POST action 
@@ -91,7 +107,7 @@ namespace ClassOne.Controllers
                     Teacher c = new Teacher();
                     c.RoleId = 1;
                     c.SchoolId = teacher.SchoolId;
-                    c.Salutation = teacher.Salutation.ToString();
+                    c.Salutation = teacher.SalutationId.ToString();
                     c.FirstName = teacher.FirstName;
                     c.LastName = teacher.LastName;
                     c.EmailId = teacher.Email;
@@ -179,17 +195,18 @@ namespace ClassOne.Controllers
         //Login POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult TeacherLogin(UserLogin login, string ReturnUrl = "")
+        public ActionResult TeacherLogin(TeacherLoginVM login, string ReturnUrl = "")
         {
             string message = "";
             var v = new TeacherRegistration();
             // Insert Line of Code to make API Call to fetch the teahcers details.
+
             #region Fetch Teacher Detail
-            Teacher _teacher = db.Teachers.Where(t => t.EmailId == login.EmailID && (t.DeleteStatus == 0)).FirstOrDefault();
+            Teacher _teacher = db.Teachers.Where(t => (t.EmailId == login.UserName || t.MobileNumber == login.UserName) && (t.DeleteStatus == 0)).FirstOrDefault();
             v.SchoolId = (int)_teacher.SchoolId;
             v.FirstName = _teacher.FirstName;
             v.LastName = _teacher.LastName;
-            v.MobileNumber = Convert.ToInt32(_teacher.MobileNumber);
+            v.MobileNumber = _teacher.MobileNumber;
             v.Email = _teacher.EmailId;
             v.Password = _teacher.Password;
             v.IsEmailVerified = _teacher.IsEmailVerified; 
@@ -204,11 +221,11 @@ namespace ClassOne.Controllers
 
                 if (string.Compare(Crypto.Hash(login.Password), v.Password) == 0)
                 {
-                    int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
-                    var ticket = new FormsAuthenticationTicket(login.EmailID, login.RememberMe, timeout);
+                    //int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
+                    var ticket = new FormsAuthenticationTicket(v.Email, true, 300);
                     string encrypted = FormsAuthentication.Encrypt(ticket);
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
-                    cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                    cookie.Expires = DateTime.Now.AddMinutes(300);
                     cookie.HttpOnly = true;
                     Response.Cookies.Add(cookie);
 

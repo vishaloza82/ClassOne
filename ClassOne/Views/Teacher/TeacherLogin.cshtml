@@ -1,6 +1,6 @@
 ﻿@model ClassOne.Models.TeacherLoginVM
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
 <!DOCTYPE html>
@@ -8,15 +8,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Teacher Registration</title>
+    <title>Teacher Login</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style type="text/css">
         .bs-example {
             height: 220px;
@@ -43,23 +43,37 @@
 
 </head>
 <body>
-     
-        <div class="bs-example" style="border:2px solid gray;">
 
-            @*<div class="form-group centerlook">
-                <h1> Login </h1>
-            </div>*@
-            <div class="form-group centerlook">
-                <label>User Name: </label>
-                @Html.EditorFor(model => model.UserName)*
-                @Html.ValidationMessageFor(model => model.UserName)
-            </div>
-            <div class="form-group centerlook">
-                <label>Password:</label>
-                @Html.EditorFor(model => model.Password)*
-                @Html.ValidationMessageFor(model => model.Password)
+    <div class="bs-example">
+
+
+        <div class="form-group centerlook">
+            <div class="DivPadding DivAlign col-md-10">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control TextBoxRegister col-md-6" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
 
             </div>
+
+        </div>
+        <div class="form-group centerlook">
+
+            <div class="col-md-10 DivAlign DivPadding">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control TextBoxRegister col-md-6" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+            </div>
+
+
+        </div>
+        <div class="form-group">
+            <div class="ButtonAlign col-md-5 loginbtn">
+
+                <input type="submit" value="Login" class="btn btn-primary" />
+
+            </div>
+        </div>
             <div class="form-group error">
                 @if (@ViewBag.Failedcount != null)
                 {
@@ -73,11 +87,7 @@
                     <label> @ViewBag.NotValidUser</label>
                 }
             </div>
-            <div class="loginbtn">
 
-                <input type="submit" value="TeacherLogin" class="btn btn-primary" />
-
-            </div>
         </div>
 </body>
 </html>
