@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Ebooks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="~/scripts/jquery-3.4.1.min.js"></script>
+    <title>Ebooks</title>
+    <script>
+        //var filename;
+        $(document).ready(function () {
+            document.getElementById("viewer1").style.visibility = 'hidden';
+            $.ajax({
+                url: "https://api.school-store.in/api/ReaderAPI/GetBookList1?OrderNumber=@ViewBag.OrderNumber",
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var district = "";
+                    for (var i = 0; i < data.length; i++) {
+                        district = district + "<div class=\"container\"><img class='container' onclick = 'klikaj(\"" + data[i].ReaderFileName + "\")'";
+                        district = district + " src=\"https://admin.school-store.in/Images/products/" + data[i].ProductImagePath + "\"><Div>" + data[i].ProductName + "</div></div>";
+                    }
+                    $('#viewer').html(district);
+                    console.log("distr" + district);
+                }
+            });
+        });
+        function klikaj(filename) {
+            var NestId = filename;
+            window.location.href = "/Ebooks/SamplePDF?NestId=" + NestId;
+        }
+    </script>
+    <style>
+        body {
+            margin: 0
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            background: #1f1c1c2e;
+            padding: 15px;
+        }
+
+            .container img {
+                width: 75%;
+                height: 75%;
+                display: block;
+                -webkit-filter: grayscale(0);
+                filter: grayscale(0);
+                transition: all 100ms ease-out;
+            }
+
+                .container img:hover {
+                    transform: scale(1.04);
+                    -webkit-filter: grayscale(0);
+                    filter: grayscale(0);
+                }
+        /* Footer */
+    </style>
+</head>
+<body>
+    <div class="main-panel">
+        <h1>Sample pdf</h1>
+        <div class="container" id="viewer">
+        </div>
+        <div id="viewer1">
+        </div>
+    </div>
+</body>
+</html>

@@ -8,16 +8,16 @@ namespace ClassOne.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public ActionResult Home()
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult Dashboard()
         {
             return View();

@@ -8,6 +8,7 @@ using ClassOne.Models;
 using System.Net.Mail;
 using System.Net;
 using System.Net.Sockets;
+using System.Net.Http;
 
 namespace ClassOne.Controllers
 {
@@ -23,7 +24,7 @@ namespace ClassOne.Controllers
         [HttpGet]
         public ActionResult TeacherRegistration()
         {
-            
+            // Instead of Line 20 - 30 Call the API to get school list
             var Schools = db.Schools.Where(x => x.DeleteStatus == 0).ToList();
 
             List<Salutation> lstSalutation = new List<Salutation>();
@@ -41,13 +42,8 @@ namespace ClassOne.Controllers
             objTitleMiss.Title = "Miss";
             lstSalutation.Add(objTitleMiss);
 
-
-
-
             TeacherRegistration objTeacher = new TeacherRegistration(Schools,lstSalutation);
-            // Instead of Line 20 - 30 Call the API to get school list
-            
-            
+                        
             return View(objTeacher);
         }
         //Registration POST action 
@@ -122,6 +118,7 @@ namespace ClassOne.Controllers
                     db.Teachers.Add(c);
                     db.SaveChanges();
 
+                    FormsAuthentication.SetAuthCookie(c.EmailId, true);
                     #endregion
 
                     #region LOGIN USER
@@ -227,6 +224,7 @@ namespace ClassOne.Controllers
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
                     cookie.Expires = DateTime.Now.AddMinutes(300);
                     cookie.HttpOnly = true;
+                    FormsAuthentication.SetAuthCookie(v.Email, true);
                     Response.Cookies.Add(cookie);
 
                     if (Url.IsLocalUrl(ReturnUrl))
@@ -273,38 +271,62 @@ namespace ClassOne.Controllers
             return true;
         }
 
-        [NonAction]
-        public void SendVerificationLinkEmail(string emailID, string activationCode)
+        //[NonAction]
+        //public void SendVerificationLinkEmail(string emailID, string activationCode)
+        //{
+        //    var verifyUrl = "/User/VerifyAccount/" + activationCode;
+        //    var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+
+        //    var fromEmail = new MailAddress("dotnetawesome@gmail.com", "Dotnet Awesome");
+        //    var toEmail = new MailAddress(emailID);
+        //    var fromEmailPassword = "********"; // Replace with actual password
+        //    string subject = "Your account is successfully created!";
+
+        //    string body = "<br/><br/>We are excited to tell you that your Dotnet Awesome account is" +
+        //        " successfully created. Please click on the below link to verify your account" +
+        //        " <br/><br/><a href='" + link + "'>" + link + "</a> ";
+
+        //    var smtp = new SmtpClient
+        //    {
+        //        Host = "smtp.gmail.com",
+        //        Port = 587,
+        //        EnableSsl = true,
+        //        DeliveryMethod = SmtpDeliveryMethod.Network,
+        //        UseDefaultCredentials = false,
+        //        Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+        //    };
+
+        //    using (var message = new MailMessage(fromEmail, toEmail)
+        //    {
+        //        Subject = subject,
+        //        Body = body,
+        //        IsBodyHtml = true
+        //    })
+        //        smtp.Send(message);
+        //}
+
+        public JsonResult SendVerificationLinkEmail(string emailID, string activationCode)
         {
-            var verifyUrl = "/User/VerifyAccount/" + activationCode;
+            var verifyUrl = "/Teacher/VerifyAccount/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("dotnetawesome@gmail.com", "Dotnet Awesome");
-            var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "********"; // Replace with actual password
-            string subject = "Your account is successfully created!";
-
-            string body = "<br/><br/>We are excited to tell you that your Dotnet Awesome account is" +
+            string body = "<br/><br/>We are excited to tell you that your ClassOne account is" +
                 " successfully created. Please click on the below link to verify your account" +
                 " <br/><br/><a href='" + link + "'>" + link + "</a> ";
 
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
-            };
+            SendEmailVM model = new SendEmailVM();
+            model.Subject = "Account Verification!";
+            model.EmailId = emailID;
+            model.HtmlContent = body;
 
-            using (var message = new MailMessage(fromEmail, toEmail)
-            {
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true
-            })
-                smtp.Send(message);
+            var uri = "http://connect.school-store.in/home/SendEmail";
+            System.Net.Http.Formatting.MediaTypeFormatter jsonFormatter = new System.Net.Http.Formatting.JsonMediaTypeFormatter();
+
+            System.Net.Http.HttpContent content = new System.Net.Http.ObjectContent<SendEmailVM>(model, jsonFormatter);
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = client.PostAsync(uri, content).Result;
+
+            return Json("success", JsonRequestBehavior.AllowGet);
         }
 
         public static string GetLocalIPAddress()
@@ -319,5 +341,17 @@ namespace ClassOne.Controllers
             }
             throw new Exception("CANNOT ACCESS");
         }
+
+        #region View Model
+        public class SendEmailVM
+        {
+            public bool SendFlag { get; set; }
+            public string Subject { get; set; }
+            public string CustomerName { get; set; }
+            public string EmailId { get; set; }
+            public string HtmlContent { get; set; }
+
+        }
+        #endregion
     }
 }

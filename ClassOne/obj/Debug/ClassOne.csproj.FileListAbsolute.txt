@@ -170,3 +170,9 @@ C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\obj\Debug\ClassOne.cs
 C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\obj\Debug\ClassOne.csproj.CopyComplete
 C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\obj\Debug\ClassOne.dll
 C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\obj\Debug\ClassOne.pdb
+C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\bin\System.Net.Http.Formatting.dll
+C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\bin\System.Web.Http.dll
+C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\bin\System.Web.Http.WebHost.dll
+C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\bin\System.Net.Http.Formatting.xml
+C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\bin\System.Web.Http.xml
+C:\Users\admin\OneDrive\Documents\GitHub\ClassOne\ClassOne\bin\System.Web.Http.WebHost.xml
