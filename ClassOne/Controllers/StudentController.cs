@@ -26,6 +26,11 @@ namespace ClassOne.Controllers
             {
                 string name = User.Identity.Name;
                 usp_GetStudentDetails_Result resp = db.usp_GetStudentDetails(name).FirstOrDefault();
+                if(resp == null)
+                {
+                    usp_GetTeacherDetails_Result tmpT = db.usp_GetTeacherDetails(name).FirstOrDefault();
+                    return Json(tmpT, JsonRequestBehavior.AllowGet);
+                }
                 return Json(resp, JsonRequestBehavior.AllowGet);
             }
         }
@@ -216,14 +221,15 @@ namespace ClassOne.Controllers
         {
             try
             {
-                using (ClassOneEntities db = new ClassOneEntities())
-                {
-                    var _customers_login_Id = db.Students_Login.Where(x => x.StudentId == CustomerId && x.DeleteStatus == 0).Select(x => x.StudentLoginId).DefaultIfEmpty().Max();
-                    var _customers_login = db.Students_Login.Where(x => x.StudentLoginId == _customers_login_Id && x.StudentId == CustomerId && x.DeleteStatus == 0).FirstOrDefault();
-                    _customers_login.LogoutTime = DateTime.Now;
-                    db.Entry(_customers_login).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                }
+                //need testing...
+                //using (ClassOneEntities db = new ClassOneEntities())
+                //{
+                //    var _customers_login_Id = db.Students_Login.Where(x => x.StudentId == CustomerId && x.DeleteStatus == 0).Select(x => x.StudentLoginId).DefaultIfEmpty().Max();
+                //    var _customers_login = db.Students_Login.Where(x => x.StudentLoginId == _customers_login_Id && x.StudentId == CustomerId && x.DeleteStatus == 0).FirstOrDefault();
+                //    _customers_login.LogoutTime = DateTime.Now;
+                //    db.Entry(_customers_login).State = System.Data.Entity.EntityState.Modified;
+                //    db.SaveChanges();
+                //}
                 FormsAuthentication.SignOut();
                 return true;
             }

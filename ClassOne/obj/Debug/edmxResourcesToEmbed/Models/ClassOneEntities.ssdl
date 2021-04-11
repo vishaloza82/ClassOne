@@ -735,6 +735,7 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.Class1_StuRegistration' do
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
     <Property Name="DeleteStatus" Type="int" Nullable="false" />
+    <Property Name="SchoolId" Type="int" />
   </EntityType>
   <EntityType Name="HomePageContentMappingContent">
     <Key>
@@ -5608,6 +5609,9 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
   </Function>
   <Function Name="usp_GetSupplierSchoolStandardsList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SupplierId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetTeacherDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailId" Type="varchar(max)" Mode="In" />
   </Function>
   <Function Name="usp_GetTempInventory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SchoolId" Type="int" Mode="In" />

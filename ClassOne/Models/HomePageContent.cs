@@ -30,5 +30,6 @@ namespace ClassOne.Models
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime UpdatedDate { get; set; }
         public int DeleteStatus { get; set; }
+        public Nullable<int> SchoolId { get; set; }
     }
 }

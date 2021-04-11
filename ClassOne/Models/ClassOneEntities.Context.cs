@@ -5827,5 +5827,14 @@ namespace ClassOne.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_VerifyUserLogin_Result>("usp_VerifyUserLogin", usernameParameter, paswordParameter, loginIpParameter);
         }
+    
+        public virtual ObjectResult<usp_GetTeacherDetails_Result> usp_GetTeacherDetails(string emailId)
+        {
+            var emailIdParameter = emailId != null ?
+                new ObjectParameter("EmailId", emailId) :
+                new ObjectParameter("EmailId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetTeacherDetails_Result>("usp_GetTeacherDetails", emailIdParameter);
+        }
     }
 }

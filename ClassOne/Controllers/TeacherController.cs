@@ -164,12 +164,15 @@ namespace ClassOne.Controllers
         {
             bool Status = false;
             //Put Get API Call below line 86 for VerifyUser
-            var getUser = new  TeacherRegistration();
+            //var getUser = new  TeacherRegistration();
+            var getUser = db.Teachers.Where(x => x.IsEmailVerified == false && x.DeleteStatus == 0 && x.EmailId == User.Identity.Name).FirstOrDefault();
             //Add API Call below 
             //getUser = 
             if (getUser != null)
             {
                 getUser.IsEmailVerified = true;
+                db.Entry(getUser).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 // Put Post API Call to confirm User and save the Teacher in DB
                 Status = true;
             }
@@ -178,6 +181,10 @@ namespace ClassOne.Controllers
                 ViewBag.Message = "Invalid Request";
             }
             ViewBag.Status = Status;
+            if(Status)
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }
             return View();
         }
 
@@ -233,7 +240,8 @@ namespace ClassOne.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        //return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Dashboard", "Home");
                     }
                 }
                 else

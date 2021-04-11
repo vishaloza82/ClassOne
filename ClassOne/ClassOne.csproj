@@ -1457,6 +1457,9 @@
     <Compile Include="Models\usp_GetSupplierSchoolStandardsList_Result.cs">
       <DependentUpon>ClassOneEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_GetTeacherDetails_Result.cs">
+      <DependentUpon>ClassOneEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_GetTempInventory_Result.cs">
       <DependentUpon>ClassOneEntities.tt</DependentUpon>
     </Compile>
@@ -2416,6 +2419,8 @@
     <Content Include="Views\Teacher\Teacher.cshtml" />
     <Content Include="Views\Ebooks\Ebooks.cshtml" />
     <Content Include="Views\Ebooks\SamplePDF.cshtml" />
+    <Content Include="Views\Teacher\Create.cshtml" />
+    <Content Include="Views\Teacher\VerifyAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -738,6 +738,7 @@
     <EntitySetMapping Name="HomePageContents">
       <EntityTypeMapping TypeName="ClassOneModel.HomePageContent">
         <MappingFragment StoreEntitySet="HomePageContent">
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
           <ScalarProperty Name="HomePageContentId" ColumnName="HomePageContentId" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
           <ScalarProperty Name="Header" ColumnName="Header" />
@@ -6754,11 +6755,7 @@
     <FunctionImportMapping FunctionImportName="usp_GetStudentDetails" FunctionName="ClassOneModel.Store.usp_GetStudentDetails">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ClassOneModel.usp_GetStudentDetails_Result">
-          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
           <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
-          <ScalarProperty Name="Division" ColumnName="Division" />
           <ScalarProperty Name="StandardId" ColumnName="StandardId" />
           <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
           <ScalarProperty Name="EmailId" ColumnName="EmailId" />
@@ -6766,6 +6763,9 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
           <ScalarProperty Name="DeleteStatus" ColumnName="DeleteStatus" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -7360,6 +7360,23 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Message" ColumnName="Message" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_GetTeacherDetails" FunctionName="ClassOneModel.Store.usp_GetTeacherDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ClassOneModel.usp_GetTeacherDetails_Result">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="StandardId" ColumnName="StandardId" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="DeleteStatus" ColumnName="DeleteStatus" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

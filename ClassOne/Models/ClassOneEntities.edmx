@@ -740,6 +740,7 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.Class1_StuRegistration' do
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
           <Property Name="DeleteStatus" Type="int" Nullable="false" />
+          <Property Name="SchoolId" Type="int" />
         </EntityType>
         <EntityType Name="HomePageContentMappingContent">
           <Key>
@@ -5614,6 +5615,9 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
         <Function Name="usp_GetSupplierSchoolStandardsList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SupplierId" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_GetTeacherDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar(max)" Mode="In" />
+        </Function>
         <Function Name="usp_GetTempInventory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SchoolId" Type="int" Mode="In" />
         </Function>
@@ -7442,6 +7446,7 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DeleteStatus" Type="Int32" Nullable="false" />
+          <Property Name="SchoolId" Type="Int32" />
         </EntityType>
         <EntityType Name="HomePageContentMappingContent">
           <Key>
@@ -13457,6 +13462,9 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
             <Parameter Name="Pasword" Mode="In" Type="String" />
             <Parameter Name="LoginIp" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="usp_GetTeacherDetails" ReturnType="Collection(ClassOneModel.usp_GetTeacherDetails_Result)">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="AddWishList_Result">
           <Property Type="Int32" Name="ProductId" Nullable="true" />
@@ -16495,11 +16503,7 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
           <Property Type="String" Name="ProductName" Nullable="false" />
         </ComplexType>
         <ComplexType Name="usp_GetStudentDetails_Result">
-          <Property Type="Int32" Name="StudentId" Nullable="false" />
-          <Property Type="String" Name="StudentName" Nullable="false" />
           <Property Type="String" Name="Username" Nullable="false" />
-          <Property Type="Int32" Name="DivisionId" Nullable="true" />
-          <Property Type="String" Name="Division" Nullable="false" />
           <Property Type="Int32" Name="StandardId" Nullable="false" />
           <Property Type="Int32" Name="SchoolId" Nullable="false" />
           <Property Type="String" Name="EmailId" Nullable="true" />
@@ -16507,6 +16511,9 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
           <Property Type="String" Name="Password" Nullable="false" />
           <Property Type="String" Name="OrderNumber" Nullable="false" />
           <Property Type="Int32" Name="DeleteStatus" Nullable="false" />
+          <Property Type="Int32" Name="CustomerId" Nullable="false" />
+          <Property Type="String" Name="CustomerName" Nullable="false" />
+          <Property Type="String" Name="RoleId" Nullable="false" MaxLength="1" />
         </ComplexType>
         <ComplexType Name="usp_GetStudentsByCustomer_Result">
           <Property Type="Int32" Name="CustomerMappingStudentId" Nullable="false" />
@@ -16936,6 +16943,19 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
           <Property Type="Int32" Name="Id" Nullable="true" />
           <Property Type="Boolean" Name="Status" Nullable="true" />
           <Property Type="String" Name="Message" Nullable="false" MaxLength="23" />
+        </ComplexType>
+        <ComplexType Name="usp_GetTeacherDetails_Result">
+          <Property Type="Int32" Name="CustomerId" Nullable="false" />
+          <Property Type="String" Name="CustomerName" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="StandardId" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="SchoolId" Nullable="true" />
+          <Property Type="String" Name="EmailId" Nullable="true" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" />
+          <Property Type="String" Name="Password" Nullable="false" />
+          <Property Type="String" Name="OrderNumber" Nullable="false" MaxLength="11" />
+          <Property Type="Int32" Name="DeleteStatus" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -17680,6 +17700,7 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
           <EntitySetMapping Name="HomePageContents">
             <EntityTypeMapping TypeName="ClassOneModel.HomePageContent">
               <MappingFragment StoreEntitySet="HomePageContent">
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="HomePageContentId" ColumnName="HomePageContentId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Header" ColumnName="Header" />
@@ -23696,11 +23717,7 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
           <FunctionImportMapping FunctionImportName="usp_GetStudentDetails" FunctionName="ClassOneModel.Store.usp_GetStudentDetails">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ClassOneModel.usp_GetStudentDetails_Result">
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
-                <ScalarProperty Name="Division" ColumnName="Division" />
                 <ScalarProperty Name="StandardId" ColumnName="StandardId" />
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
@@ -23708,6 +23725,9 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
                 <ScalarProperty Name="DeleteStatus" ColumnName="DeleteStatus" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -24302,6 +24322,23 @@ warning 6002: The table/view 'SchoolStoreStaging1.dbo.TriggerFireLog' does not h
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetTeacherDetails" FunctionName="ClassOneModel.Store.usp_GetTeacherDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClassOneModel.usp_GetTeacherDetails_Result">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="StandardId" ColumnName="StandardId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="DeleteStatus" ColumnName="DeleteStatus" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

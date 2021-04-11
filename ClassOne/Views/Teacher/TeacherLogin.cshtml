@@ -72,42 +72,47 @@
             </div>
             <div class="card-body">
                 <div class="bs-example">
-                    <div class="form-group"> @*centerlook*@
-                        <div class="DivPadding DivAlign col-md-10">
-                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3" })
-                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control TextBoxRegister col-md-6" } })
-                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">@*centerlook*@
-                        <div class="col-md-10 DivAlign DivPadding">
-                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control TextBoxRegister col-md-6" } })
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="ButtonAlign col-md-5 loginbtn">
-                            <input type="submit" value="Login" class="btn btn-primary" />
-                        </div>
-                        <div class="ActionLinkAlign col-md-5">
-                            @Html.ActionLink("Create account", "TeacherRegistration")
-                        </div>
-                    </div>
-                    <div class="form-group error">
-                        @if (@ViewBag.Failedcount != null)
-                        {
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                @*centerlook*@
+                                <div class="DivPadding DivAlign col-md-10">
+                                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3" })
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control TextBoxRegister col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @*centerlook*@
+                                <div class="col-md-10 DivAlign DivPadding">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control TextBoxRegister col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="ButtonAlign col-md-5 loginbtn">
+                                    <input type="submit" value="Login" name="TeacherLogin" class="btn btn-primary" />
+                                </div>
+                                <div class="ActionLinkAlign col-md-5">
+                                    @Html.ActionLink("Create account", "TeacherRegistration")
+                                </div>
+                            </div>
+                            <div class="form-group error">
+                                @if (@ViewBag.Failedcount != null)
+                                {
 
-                            <label> Failed Attempt count is: @ViewBag.Failedcount</label>
-                        }
+                                    <label> Failed Attempt count is: @ViewBag.Failedcount</label>
+                                }
 
-                        @if (@ViewBag.NotValidUser != null)
-                        {
+                                @if (@ViewBag.NotValidUser != null)
+                                {
 
-                            <label> @ViewBag.NotValidUser</label>
-                        }
-                    </div>
-
+                                    <label> @ViewBag.NotValidUser</label>
+                                }
+                            </div>
+                    }
                 </div>
             </div>
         </div>

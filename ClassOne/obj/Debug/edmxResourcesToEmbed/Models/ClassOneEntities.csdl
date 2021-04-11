@@ -793,6 +793,7 @@
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="DeleteStatus" Type="Int32" Nullable="false" />
+    <Property Name="SchoolId" Type="Int32" />
   </EntityType>
   <EntityType Name="HomePageContentMappingContent">
     <Key>
@@ -6808,6 +6809,9 @@
       <Parameter Name="Pasword" Mode="In" Type="String" />
       <Parameter Name="LoginIp" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="usp_GetTeacherDetails" ReturnType="Collection(ClassOneModel.usp_GetTeacherDetails_Result)">
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="AddWishList_Result">
     <Property Type="Int32" Name="ProductId" Nullable="true" />
@@ -9846,11 +9850,7 @@
     <Property Type="String" Name="ProductName" Nullable="false" />
   </ComplexType>
   <ComplexType Name="usp_GetStudentDetails_Result">
-    <Property Type="Int32" Name="StudentId" Nullable="false" />
-    <Property Type="String" Name="StudentName" Nullable="false" />
     <Property Type="String" Name="Username" Nullable="false" />
-    <Property Type="Int32" Name="DivisionId" Nullable="true" />
-    <Property Type="String" Name="Division" Nullable="false" />
     <Property Type="Int32" Name="StandardId" Nullable="false" />
     <Property Type="Int32" Name="SchoolId" Nullable="false" />
     <Property Type="String" Name="EmailId" Nullable="true" />
@@ -9858,6 +9858,9 @@
     <Property Type="String" Name="Password" Nullable="false" />
     <Property Type="String" Name="OrderNumber" Nullable="false" />
     <Property Type="Int32" Name="DeleteStatus" Nullable="false" />
+    <Property Type="Int32" Name="CustomerId" Nullable="false" />
+    <Property Type="String" Name="CustomerName" Nullable="false" />
+    <Property Type="String" Name="RoleId" Nullable="false" MaxLength="1" />
   </ComplexType>
   <ComplexType Name="usp_GetStudentsByCustomer_Result">
     <Property Type="Int32" Name="CustomerMappingStudentId" Nullable="false" />
@@ -10287,5 +10290,18 @@
     <Property Type="Int32" Name="Id" Nullable="true" />
     <Property Type="Boolean" Name="Status" Nullable="true" />
     <Property Type="String" Name="Message" Nullable="false" MaxLength="23" />
+  </ComplexType>
+  <ComplexType Name="usp_GetTeacherDetails_Result">
+    <Property Type="Int32" Name="CustomerId" Nullable="false" />
+    <Property Type="String" Name="CustomerName" Nullable="true" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="8" />
+    <Property Type="Int32" Name="RoleId" Nullable="false" />
+    <Property Type="String" Name="StandardId" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="SchoolId" Nullable="true" />
+    <Property Type="String" Name="EmailId" Nullable="true" />
+    <Property Type="String" Name="MobileNumber" Nullable="true" />
+    <Property Type="String" Name="Password" Nullable="false" />
+    <Property Type="String" Name="OrderNumber" Nullable="false" MaxLength="11" />
+    <Property Type="Int32" Name="DeleteStatus" Nullable="false" />
   </ComplexType>
 </Schema>
