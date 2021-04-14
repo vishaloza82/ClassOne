@@ -13,8 +13,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             WebViewer({
-                path: 'https://localhost:44315/lib/Webviewer/',
-                initialDoc: 'https://localhost:44315/content/files/@ViewBag.filename',
+                path: 'http://localhost:44315/lib/Webviewer/',
+                initialDoc: 'http://localhost:44315/content/files/@ViewBag.filename',
                 licenseKey: "CenpdOfy8ec8yMBb2buAny0ZfxGEwI4vJwgBXHqDjs6mbvpA06TJ8aXYpKAnktDtZ-iznzEESuEZyRYslEN-genBbMbVivfzEGLJmDF33-NL3MpPCTPJdlA09q8WuSZTFWO1UGdCoOpwAuuKHftV-5R2cDHJcrIlY65JuLxGZ1DNpZ800crnXsPNtnN3gnYhhayIQr4HxdnIMZ7xpGJyJqWUVlnC0ZEzhNS6EEWbeLUoIAwkdgaF6IO3qZkqQ02W1jxEfXix5CqQQlcM_6sllYp9xipqdqFnftIEwlYUBUNDSIdKVu0Hthc-jAr6QDQ7QNhXQ0kqoUDoMFqm5nlhaZgCndc9Nsvl4b3Yb5hZK-K6EVZ4YoS6yj7RFtLFXs3h6atJZ_kC1brNUUBQVIDc3B8Y_7SuSmXm_UV9Ce0bbHqas1iRMz4-uDxHS0qIvfFV",
             }, document.getElementById('viewer')).then(instance => {
                 instance.setTheme('dark');

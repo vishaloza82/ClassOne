@@ -26,6 +26,7 @@ namespace ClassOne.Controllers
         {
             // Instead of Line 20 - 30 Call the API to get school list
             var Schools = db.Schools.Where(x => x.DeleteStatus == 0).ToList();
+            //var Schools = new SelectList(db.Schools, "SchoolId", "SchoolName");
 
             List<Salutation> lstSalutation = new List<Salutation>();
             Salutation objTitleMr = new Salutation();
@@ -42,8 +43,12 @@ namespace ClassOne.Controllers
             objTitleMiss.Title = "Miss";
             lstSalutation.Add(objTitleMiss);
 
-            TeacherRegistration objTeacher = new TeacherRegistration(Schools,lstSalutation);
-                        
+            //TeacherRegistration objTeacher = new TeacherRegistration(Schools,lstSalutation);
+
+            TeacherRegistration objTeacher = new TeacherRegistration();
+            objTeacher.SchoolList = new SelectList(db.Schools, "SchoolId", "SchoolName");
+            objTeacher.Salutation = new SelectList(lstSalutation, "Id", "Title");
+
             return View(objTeacher);
         }
         //Registration POST action 
@@ -53,6 +58,25 @@ namespace ClassOne.Controllers
         {
             bool Status = false;
             string message = "";
+            //teacher.School = db.Schools.Where(x => x.DeleteStatus == 0 && x.SchoolId == teacher.SchoolId).FirstOrDefault();
+            teacher.SchoolList = new SelectList(db.Schools, "SchoolId", "SchoolName");
+
+            
+            List<Salutation> lstSalutation = new List<Salutation>();
+            Salutation objTitleMr = new Salutation();
+            objTitleMr.Id = 1;
+            objTitleMr.Title = "Mr";
+            lstSalutation.Add(objTitleMr);
+
+            Salutation objTitleMrs = new Salutation();
+            objTitleMrs.Id = 2;
+            objTitleMrs.Title = "Mrs";
+            lstSalutation.Add(objTitleMrs);
+            Salutation objTitleMiss = new Salutation();
+            objTitleMiss.Id = 3;
+            objTitleMiss.Title = "Miss";
+            lstSalutation.Add(objTitleMiss);
+            teacher.Salutation = new SelectList(lstSalutation, "Id", "Title");
             //
             // Model Validation 
             if (ModelState.IsValid)

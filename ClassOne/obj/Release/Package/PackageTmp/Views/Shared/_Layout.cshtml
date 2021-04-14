@@ -50,7 +50,7 @@
                     if (!$scope.CurrentUser) {
                         $scope.CurrentUser = {
                             'FirstName': 'GUEST',
-                            'StudentId': 0,
+                            'CustomerId': 0,
                             'SchoolId': 0
                         };
 
@@ -60,7 +60,7 @@
                     sessionStorage.setItem("CustomerId", $scope.CurrentUser.CustomerId == 0 ? null : $scope.CurrentUser.CustomerId);//
                     localStorage.setItem("CustomerId", $scope.CurrentUser.CustomerId == 0 ? null : $scope.CurrentUser.CustomerId);//
                     //
-                    CustomerId = $scope.CurrentUser.StudentId;
+                    CustomerId = $scope.CurrentUser.CustomerId;
                     SchoolId = $scope.CurrentUser.SchoolId;//
 
                     //$http.get(ApiPath + '/api/Customer/GetAddressFlagList?SchoolId=' + SchoolId)
@@ -100,7 +100,7 @@
                         //$scope.Refresh();
                         sessionStorage.removeItem("CustomerId");//
                         localStorage.removeItem("CustomerId");//
-                        window.location = '/home/index';
+                        window.location = '/home/home';
                     });
             }
             //console.log("customerid" + $scope.CurrentUser.StudentId);

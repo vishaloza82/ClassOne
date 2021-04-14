@@ -49,20 +49,28 @@ namespace ClassOne.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "School Required")]
         public int SchoolId { get; set; }
 
-        
 
-        public IEnumerable<SelectListItem> SchoolList
-        {
-            get 
-            {
-                var allSchools = _schoolList.Select(f => new SelectListItem
-                {
-                    Value = f.SchoolId.ToString(),
-                    Text = f.SchoolName,
-                }) ;
-                    return DefaultSchool.Concat(allSchools);
-            }
-        }
+        public IEnumerable<SelectListItem> SchoolList { get; set; }
+        //public IEnumerable<SelectListItem> SchoolList
+        //{
+        //    get
+        //    {
+        //        try
+        //        {
+        //            var allSchools = _schoolList.Select(f => new SelectListItem
+        //            {
+        //                Value = f.SchoolId.ToString(),
+        //                Text = f.SchoolName,
+        //            });
+        //            return DefaultSchool.Concat(allSchools);
+        //        }
+        //        catch(Exception)
+        //        {
+        //            return null;
+        //        }
+
+        //    }
+        //}
 
         public IEnumerable<SelectListItem> DefaultSchool
         {
@@ -78,19 +86,19 @@ namespace ClassOne.Models
 
         public int SalutationId { get; set; }
 
-
-        public IEnumerable<SelectListItem> Salutation
-        {
-            get
-            {
-                var allTitles = _titles.Select(f => new SelectListItem
-                {
-                    Value = f.Id.ToString(),
-                    Text = f.Title,
-                });
-                return DefaultTitle.Concat(allTitles);
-            }
-        }
+        public IEnumerable<SelectListItem> Salutation { get; set; }
+        //public IEnumerable<SelectListItem> Salutation
+        //{
+        //    get
+        //    {
+        //        var allTitles = _titles.Select(f => new SelectListItem
+        //        {
+        //            Value = f.Id.ToString(),
+        //            Text = f.Title,
+        //        });
+        //        return DefaultTitle.Concat(allTitles);
+        //    }
+        //}
 
 
         public IEnumerable<SelectListItem> DefaultTitle
