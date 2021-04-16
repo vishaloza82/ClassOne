@@ -405,7 +405,7 @@
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" name="" id="OrderNumber" placeholder="Order Id" data-ng-model="OrderNumber" data-ng-disabled="Alldisabled=='false' " data-ng-required="true" />
                                                             <span class="input-group-btn">
-                                                                <button class="btn btn-success" data-ng-click="OtpSentToUser()" id="SendOTP" data-ng-disabled="!OrderNumber">{{OtpSendButtonText}}</button>
+                                                                <button class="btn btn-success" data-ng-click="OtpSentToUser()" id="SendOTP" style="width:100px" data-ng-disabled="!OrderNumber">{{OtpSendButtonText}}</button>
                                                             </span>
                                                         </div>
                                                         <span style="color: red;" data-ng-show="MobileOtp_Message">{{MobileOtp_Message}}</span>
@@ -414,7 +414,7 @@
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" id="OTPverify" placeholder="Verify OTP" data-ng-required="true" data-ng-model="OTPverify" disabled />
                                                             <span class="input-group-btn">
-                                                                <button class="btn btn-success" data-ng-click="VerifiyOtp()" id="OTPVerfyOtp" disabled>{{OtpVerifiedButtonText}}</button>
+                                                                <button class="btn btn-success" data-ng-click="VerifiyOtp()" id="OTPVerfyOtp" style="width:100px" disabled>{{OtpVerifiedButtonText}}</button>
                                                             </span>
                                                         </div>
                                                         <span style="color: red;" data-ng-show="RegisterResult.Status==false">{{MobileOtp_Message1}}</span>
@@ -448,7 +448,7 @@
                                                             <b>School<span class="red">*</span></b>
                                                             @*<input type="text" name="" class="form-control" id="StSchoolId" placeholder="School" data-ng-model="SchoolId" data-ng-disabled="Alldisabled=='false'||!OTPVerfyOtp" data-ng-required="true" />*@
                                                             <select class="form-control" id="SchoolId" name="SchoolId"
-                                                                    data-ng-disabled="Alldisabled=='false' " data-ng-required="true"
+                                                                    data-ng-disabled="Alldisabled=='false' || !OTPVerfyOtp" data-ng-required="true"
                                                                     data-ng-model="SchoolId"
                                                                     data-ng-options="school.SchoolId as school.SchoolName for school in SchoolStandardList">
                                                             </select>

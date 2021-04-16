@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>E:\Shashank\SchoolStore\Publish\ClassOne\12042021</_PublishTargetUrl>
-    <History>True|2021-04-12T11:31:21.8567871Z;True|2021-04-11T20:54:56.3725158+05:30;True|2021-04-10T19:16:37.0884027+05:30;</History>
+    <_PublishTargetUrl>E:\Shashank\SchoolStore\Publish\ClassOne\15042021</_PublishTargetUrl>
+    <History>True|2021-04-15T12:42:45.6209342Z;True|2021-04-12T17:01:21.8567871+05:30;True|2021-04-11T20:54:56.3725158+05:30;True|2021-04-10T19:16:37.0884027+05:30;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -15,10 +15,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/06/2021 17:00:13</publishTime>
     </File>
     <File Include="bin/ClassOne.dll">
-      <publishTime>04/12/2021 17:01:07</publishTime>
+      <publishTime>04/15/2021 18:12:31</publishTime>
     </File>
     <File Include="bin/ClassOne.pdb">
-      <publishTime>04/12/2021 17:01:07</publishTime>
+      <publishTime>04/15/2021 18:12:31</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/06/2021 17:00:13</publishTime>
@@ -173,6 +173,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/Site.css">
       <publishTime>04/06/2021 16:59:57</publishTime>
     </File>
+    <File Include="Content/style1.css">
+      <publishTime>03/14/2021 02:15:18</publishTime>
+    </File>
     <File Include="Design/css/bootstrap-datetimepicker.min.css">
       <publishTime>04/06/2021 16:59:57</publishTime>
     </File>
@@ -180,7 +183,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/06/2021 16:59:57</publishTime>
     </File>
     <File Include="Design/css/theme.css">
-      <publishTime>04/06/2021 16:59:57</publishTime>
+      <publishTime>04/15/2021 14:36:38</publishTime>
     </File>
     <File Include="Design/fonts/poppins/poppins-v5-latin-100.eot">
       <publishTime>04/06/2021 16:59:57</publishTime>
@@ -452,11 +455,23 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Design/fonts/poppins/poppins-v5-latin-regular.woff2">
       <publishTime>04/06/2021 16:59:58</publishTime>
     </File>
+    <File Include="Design/images/avatar.png">
+      <publishTime>03/06/2013 14:46:24</publishTime>
+    </File>
     <File Include="Design/images/bg-title-01.jpg">
       <publishTime>04/06/2021 16:59:58</publishTime>
     </File>
     <File Include="Design/images/bg-title-02.jpg">
       <publishTime>04/06/2021 16:59:58</publishTime>
+    </File>
+    <File Include="Design/images/bg_direction_nav.png">
+      <publishTime>03/05/2013 00:01:22</publishTime>
+    </File>
+    <File Include="Design/images/glyphicons-halflings-white.png">
+      <publishTime>12/17/2012 10:03:24</publishTime>
+    </File>
+    <File Include="Design/images/glyphicons-halflings.png">
+      <publishTime>12/17/2012 10:03:24</publishTime>
     </File>
     <File Include="Design/images/icon/avatar-01.jpg">
       <publishTime>04/06/2021 16:59:58</publishTime>
@@ -494,6 +509,75 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Design/images/icon/Untitled-1.jpg">
       <publishTime>04/06/2021 16:59:58</publishTime>
     </File>
+    <File Include="Design/images/logo.png">
+      <publishTime>03/21/2016 12:24:10</publishTime>
+    </File>
+    <File Include="Design/images/nivo-bullets.png">
+      <publishTime>11/15/2011 15:59:48</publishTime>
+    </File>
+    <File Include="Design/images/section-image-1.png">
+      <publishTime>09/10/2015 15:49:30</publishTime>
+    </File>
+    <File Include="Design/images/service1.jpg">
+      <publishTime>11/30/2014 13:20:06</publishTime>
+    </File>
+    <File Include="Design/images/service2.jpg">
+      <publishTime>11/30/2014 13:19:14</publishTime>
+    </File>
+    <File Include="Design/images/service3.jpg">
+      <publishTime>11/30/2014 13:18:54</publishTime>
+    </File>
+    <File Include="Design/images/slides/0.jpg">
+      <publishTime>04/14/2021 18:43:58</publishTime>
+    </File>
+    <File Include="Design/images/slides/1.jpg">
+      <publishTime>03/21/2016 11:49:54</publishTime>
+    </File>
+    <File Include="Design/images/slides/2.jpg">
+      <publishTime>03/21/2016 11:50:38</publishTime>
+    </File>
+    <File Include="Design/images/slides/3.jpg">
+      <publishTime>03/21/2016 12:18:42</publishTime>
+    </File>
+    <File Include="Design/images/slides/4.jpg">
+      <publishTime>04/14/2021 18:36:59</publishTime>
+    </File>
+    <File Include="Design/images/team1.jpg">
+      <publishTime>11/30/2014 12:57:36</publishTime>
+    </File>
+    <File Include="Design/images/team2.jpg">
+      <publishTime>11/30/2014 12:59:54</publishTime>
+    </File>
+    <File Include="Design/images/team3.jpg">
+      <publishTime>11/30/2014 13:01:00</publishTime>
+    </File>
+    <File Include="Design/images/team4.jpg">
+      <publishTime>11/30/2014 13:01:24</publishTime>
+    </File>
+    <File Include="Design/images/works/1.jpg">
+      <publishTime>11/30/2014 13:28:12</publishTime>
+    </File>
+    <File Include="Design/images/works/2.jpg">
+      <publishTime>11/30/2014 13:28:20</publishTime>
+    </File>
+    <File Include="Design/images/works/3.jpg">
+      <publishTime>11/30/2014 13:28:44</publishTime>
+    </File>
+    <File Include="Design/images/works/4.jpg">
+      <publishTime>11/30/2014 13:28:50</publishTime>
+    </File>
+    <File Include="Design/images/works/5.jpg">
+      <publishTime>11/30/2014 13:29:02</publishTime>
+    </File>
+    <File Include="Design/images/works/6.jpg">
+      <publishTime>11/30/2014 13:29:10</publishTime>
+    </File>
+    <File Include="Design/images/works/7.jpg">
+      <publishTime>11/30/2014 13:29:16</publishTime>
+    </File>
+    <File Include="Design/images/works/8.jpg">
+      <publishTime>11/30/2014 13:29:38</publishTime>
+    </File>
     <File Include="Design/js/bootstrap-datetimepicker.js">
       <publishTime>04/06/2021 16:59:58</publishTime>
     </File>
@@ -510,7 +594,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/06/2021 16:59:58</publishTime>
     </File>
     <File Include="Design/vendor/bootstrap-4.1/bootstrap.min.css">
-      <publishTime>04/06/2021 16:59:58</publishTime>
+      <publishTime>04/15/2021 14:29:04</publishTime>
     </File>
     <File Include="Design/vendor/bootstrap-4.1/bootstrap.min.js">
       <publishTime>04/06/2021 16:59:58</publishTime>
@@ -898,6 +982,93 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Design/vendor/fullcalendar-3.10.0/README.txt">
       <publishTime>04/06/2021 16:59:58</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/animate.css">
+      <publishTime>03/12/2013 06:00:34</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/bootstrap.min.css">
+      <publishTime>02/14/2014 03:27:56</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/custom-fonts.css">
+      <publishTime>02/14/2014 03:38:38</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/fancybox/blank.gif">
+      <publishTime>01/16/2013 03:10:42</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/fancybox/fancybox_loading.gif">
+      <publishTime>01/16/2013 03:10:42</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/fancybox/fancybox_overlay.png">
+      <publishTime>01/16/2013 03:10:42</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/fancybox/fancybox_sprite.png">
+      <publishTime>01/16/2013 03:10:42</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/fancybox/jquery.fancybox.css">
+      <publishTime>03/21/2016 12:58:02</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/flexslider.css">
+      <publishTime>04/14/2021 18:33:37</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/font-awesome.css">
+      <publishTime>02/14/2014 00:07:28</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/jquery.fancybox.css">
+      <publishTime>03/21/2016 12:56:52</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/animate.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/bootstrap.min.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/custom.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/flexslider/jquery.flexslider.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/flexslider/setting.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/google-code-prettify/prettify.css">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/google-code-prettify/prettify.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/jquery.easing.1.3.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/jquery.fancybox-media.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/jquery.fancybox.pack.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/jquery.flexslider.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/jquery.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/portfolio/jquery.quicksand.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/portfolio/setting.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/quicksand/jquery.quicksand.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/quicksand/setting.js">
+      <publishTime>04/14/2021 17:34:16</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/js/validate.js">
+      <publishTime>04/14/2021 17:34:17</publishTime>
+    </File>
+    <File Include="Design/vendor/Home/style.css">
+      <publishTime>04/15/2021 14:14:17</publishTime>
     </File>
     <File Include="Design/vendor/jquery-3.2.1.min.js">
       <publishTime>04/06/2021 16:59:59</publishTime>
@@ -2652,7 +2823,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/06/2021 17:00:09</publishTime>
     </File>
     <File Include="Views/Ebooks/Ebooks.cshtml">
-      <publishTime>04/10/2021 16:43:37</publishTime>
+      <publishTime>04/12/2021 19:19:58</publishTime>
     </File>
     <File Include="Views/Ebooks/SamplePDF.cshtml">
       <publishTime>04/12/2021 15:47:11</publishTime>
@@ -2667,7 +2838,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/08/2021 14:01:37</publishTime>
     </File>
     <File Include="Views/Home/Home.cshtml">
-      <publishTime>04/06/2021 17:00:09</publishTime>
+      <publishTime>04/15/2021 18:11:19</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>04/06/2021 17:00:09</publishTime>
@@ -2676,13 +2847,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/06/2021 17:00:09</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/12/2021 15:52:19</publishTime>
+      <publishTime>04/12/2021 19:22:34</publishTime>
     </File>
     <File Include="Views/Shared/_Layout1.cshtml">
-      <publishTime>04/12/2021 16:07:53</publishTime>
+      <publishTime>04/14/2021 14:30:07</publishTime>
     </File>
     <File Include="Views/Student/Student.cshtml">
-      <publishTime>04/10/2021 15:50:53</publishTime>
+      <publishTime>04/15/2021 15:37:01</publishTime>
     </File>
     <File Include="Views/Teacher/Create.cshtml">
       <publishTime>04/11/2021 20:23:48</publishTime>
@@ -2691,10 +2862,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/06/2021 17:00:09</publishTime>
     </File>
     <File Include="Views/Teacher/TeacherLogin.cshtml">
-      <publishTime>04/11/2021 20:33:35</publishTime>
+      <publishTime>04/15/2021 15:37:18</publishTime>
     </File>
     <File Include="Views/Teacher/TeacherRegistration.cshtml">
-      <publishTime>04/12/2021 16:53:51</publishTime>
+      <publishTime>04/15/2021 17:50:57</publishTime>
     </File>
     <File Include="Views/Teacher/VerifyAccount.cshtml">
       <publishTime>04/11/2021 20:49:43</publishTime>

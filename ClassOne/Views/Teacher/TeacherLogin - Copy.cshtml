@@ -1,0 +1,121 @@
+﻿@model ClassOne.Models.TeacherLoginVM
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Teacher Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .bs-example {
+            height: 220px;
+        }
+
+        .centerlook {
+            padding-left: 200px;
+            font-weight: bold;
+            width: 1000px;
+        }
+
+        .error {
+            padding-left: 400px;
+            font-weight: bold;
+            width: 1000px;
+            color: red;
+        }
+
+        .loginbtn {
+            padding-left: 500px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <section class="au-breadcrumb2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="au-breadcrumb-content">
+                        <div class="au-breadcrumb-left">
+                            <span class="au-breadcrumb-span">You are here:</span>
+                            <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                <li class="list-inline-item active">
+                                    <a href="#">Home</a>
+                                </li>
+                                <li class="list-inline-item seprate">
+                                    <span>/</span>
+                                </li>
+                                <li class="list-inline-item">Teacher Login</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row d-flex justify-content-center">
+        <div class="card col-md-6">
+            <div class="card-header text-center">
+                <b> Teacher Login</b>
+            </div>
+            <div class="card-body">
+                <div class="bs-example">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                @*centerlook*@
+                                <div class="DivPadding DivAlign col-md-10">
+                                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3" })
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control TextBoxRegister col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @*centerlook*@
+                                <div class="col-md-10 DivAlign DivPadding">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control TextBoxRegister col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="ButtonAlign col-md-5 loginbtn">
+                                    <input type="submit" value="Login" name="TeacherLogin" class="btn btn-success" />
+                                </div>
+                                <div class="ActionLinkAlign col-md-5">
+                                    @Html.ActionLink("Create account", "TeacherRegistration", null, new { style = "color: #e92056" })
+                                </div>
+                            </div>
+                            <div class="form-group error">
+                                @if (@ViewBag.Failedcount != null)
+                                {
+
+                                    <label> Failed Attempt count is: @ViewBag.Failedcount</label>
+                                }
+
+                                @if (@ViewBag.NotValidUser != null)
+                                {
+
+                                    <label> @ViewBag.NotValidUser</label>
+                                }
+                            </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
