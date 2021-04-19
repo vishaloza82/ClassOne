@@ -11,7 +11,7 @@
     <script>
         //var filename;
         $(document).ready(function () {
-            document.getElementById("viewer1").style.visibility = 'hidden';
+            /*document.getElementById("viewer1").style.visibility = 'hidden';*/
             $.ajax({
                 url: "https://api.school-store.in/api/ReaderAPI/GetBookList1?OrderNumber=@ViewBag.OrderNumber",
                 datatype: "json",
@@ -19,8 +19,10 @@
                 success: function (data) {
                     var district = "";
                     for (var i = 0; i < data.length; i++) {
-                        district = district + "<div class=\"container\"><img class='container' onclick = 'klikaj(\"" + data[i].ReaderFileName + "\")'";
-                        district = district + " src=\"https://admin.school-store.in/Images/products/" + data[i].ProductImagePath + "\"><Div>" + data[i].ProductName + "</div></div>";
+                        //district = district + "<div class=\"container\"><img class='container' onclick = 'klikaj(\"" + data[i].ReaderFileName + "\")'";
+                        //district = district + " src=\"https://admin.school-store.in/Images/products/" + data[i].ProductImagePath + "\"><Div>" + data[i].ProductName + "</div></div>";
+                        district = district + "<div class=\"card-body col-md-3\"><img class=\"card-img-top\" style=\"width: 320px; height: 400px;\" onclick = 'klikaj(\"" + data[i].ReaderFileName + "\")'";
+                        district = district + " src=\"https://admin.school-store.in/Images/products/" + data[i].ProductImagePath + "\"><p class=\"card-text\">" + data[i].ProductName + "</p></div>";
                     }
                     $('#viewer').html(district);
                     console.log("distr" + district);
@@ -37,11 +39,11 @@
             margin: 0
         }
 
-        .container {
+        .container1 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 15px;
-            background: #1f1c1c2e;
+            /*background: #1f1c1c2e;*/
             padding: 15px;
         }
 
@@ -63,11 +65,19 @@
     </style>
 </head>
 <body>
-    <div class="main-panel">
+    @*<div class="main-panel">
         <h1>Sample pdf</h1>
         <div class="container" id="viewer">
         </div>
         <div id="viewer1">
+        </div>
+    </div>*@
+    <div class="row col d-flex justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="row" id="viewer">
+                </div>
+            </div>
         </div>
     </div>
 </body>
